@@ -6,6 +6,14 @@ export function useActiveSection(sectionIds: string[]) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        const atBottom =
+          window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1;
+
+        if (atBottom) {
+          setActiveId(sectionIds[sectionIds.length - 1]);
+          return;
+        }
+
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
@@ -22,7 +30,20 @@ export function useActiveSection(sectionIds: string[]) {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1;
+      if (atBottom) {
+        setActiveId(sectionIds[sectionIds.length - 1]);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [sectionIds]);
 
   return activeId;

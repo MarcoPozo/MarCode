@@ -1,9 +1,64 @@
+import { FiArrowRight, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import heroVisual from "../../assets/images/hero-visual.png";
 import "./Hero.css";
 
 export default function Hero() {
   return (
-    <section id="hero" className="section-view">
-      <h1>Hero</h1>
+    <section id="hero" className="section-view hero">
+      <div className="container hero__grid">
+        <div className="hero__content">
+          <span className="hero__badge">Full Stack Developer</span>
+
+          <h1 className="hero__name">Marco Pozo</h1>
+
+          <p className="hero__tagline">
+            &ldquo;Haz cosas que los demás sueñen con hacer.&rdquo;
+          </p>
+
+          <p className="hero__description">
+            Desarrollador con más de 3 años de experiencia construyendo
+            productos digitales, con un enfoque especial en frontend y
+            experiencias de usuario modernas.
+          </p>
+
+          <div className="hero__actions">
+            <a href="#projects" className="btn btn--primary">
+              Ver proyectos
+              <FiArrowRight />
+            </a>
+            <a href="#contact" className="btn btn--outline">
+              Contactarme
+            </a>
+          </div>
+
+          <div className="hero__socials">
+            <a
+              href="https://github.com/MarcoPozo"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub">
+              <FiGithub />
+            </a>
+            <a
+              href="https://linkedin.com/in/marcoopozo"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn">
+              <FiLinkedin />
+            </a>
+            <a href="mailto:marco10011111@gmail.com" aria-label="Email">
+              <FiMail />
+            </a>
+          </div>
+        </div>
+
+        <div className="hero__visual">
+          <img
+            src={heroVisual}
+            alt="Ilustración de un espacio de trabajo de desarrollo flotante"
+          />
+        </div>
+      </div>
     </section>
   );
 }

@@ -1,1 +1,110 @@
-/* Hero styles */
+.hero__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: var(--space-2xl);
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.hero__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__visual img {
+  width: 100%;
+  max-width: 780px;
+  filter: drop-shadow(0 30px 50px var(--shadow-color))
+    drop-shadow(0 0 60px var(--accent-subtle));
+}
+
+.hero__badge {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--accent-text);
+  background-color: var(--accent-subtle);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  border: var(--border-thin) solid var(--border-accent);
+}
+
+.hero__name {
+  font-size: var(--text-5xl);
+  line-height: var(--leading-tight);
+}
+
+.hero__tagline {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.hero__description {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  max-width: 560px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.hero__socials {
+  display: flex;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.hero__socials a {
+  color: var(--text-secondary);
+  font-size: var(--icon-md);
+  transition: color var(--transition-fast);
+}
+
+.hero__socials a:hover {
+  color: var(--accent-text);
+}
+
+@media (max-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__visual {
+    order: -1;
+  }
+
+  .hero__content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__actions,
+  .hero__socials {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    justify-content: center;
+    width: 100%;
+  }
+}

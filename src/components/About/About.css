@@ -1,1 +1,111 @@
-/* About styles */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.about__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.about__badge {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--accent-text);
+  background-color: var(--accent-subtle);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  border: var(--border-thin) solid var(--border-accent);
+}
+
+.about__title {
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+}
+
+.about__text {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  max-width: 620px;
+}
+
+.about__focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.about__tag {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border: var(--border-thin) solid var(--border-default);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+}
+
+.about__stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.about__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  background-color: var(--bg-secondary);
+  border: var(--border-thin) solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.about__stat-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-semibold);
+  color: var(--accent-text);
+  line-height: var(--leading-tight);
+}
+
+.about__stat-label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__intro {
+    align-items: center;
+    text-align: center;
+  }
+
+  .about__focus {
+    justify-content: center;
+  }
+
+  .about__stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about__stat {
+    flex: 1 1 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__stats {
+    flex-direction: column;
+  }
+}

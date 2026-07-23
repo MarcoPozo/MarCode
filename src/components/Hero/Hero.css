@@ -46,6 +46,7 @@
   font-weight: var(--weight-medium);
   color: var(--text-primary);
   font-style: italic;
+  white-space: nowrap;
 }
 
 .hero__description {
@@ -95,6 +96,10 @@
   .hero__socials {
     justify-content: center;
   }
+
+  .hero__tagline {
+    font-size: var(--text-xl);
+  }
 }
 
 @media (max-width: 480px) {
@@ -106,5 +111,9 @@
   .hero__actions .btn {
     justify-content: center;
     width: 100%;
+  }
+
+  .hero__tagline {
+    font-size: var(--text-lg);
   }
 }

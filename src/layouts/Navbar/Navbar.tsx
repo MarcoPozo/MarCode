@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import "./Navbar.css";
@@ -13,21 +14,22 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
   const activeId = useActiveSection(navLinks.map((link) => link.id));
 
   return (
     <nav className="navbar">
       <div className="navbar__container">
-        <a href="#hero" className="navbar__brand">
+        <Link to="/" className="navbar__brand">
           MarCode
-        </a>
+        </Link>
 
         <button
           className="navbar__toggle"
           onClick={() => setIsOpen((prev) => !prev)}
           aria-label="Toggle navigation menu"
-          aria-expanded={isOpen}
-        >
+          aria-expanded={isOpen}>
           {isOpen ? <HiX /> : <HiMenu />}
         </button>
 
@@ -35,12 +37,11 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
-                href={`#${link.id}`}
+                href={isHome ? `#${link.id}` : `/#${link.id}`}
                 className={`navbar__link ${
-                  activeId === link.id ? "navbar__link--active" : ""
+                  isHome && activeId === link.id ? "navbar__link--active" : ""
                 }`}
-                onClick={() => setIsOpen(false)}
-              >
+                onClick={() => setIsOpen(false)}>
                 {link.label}
               </a>
             </li>

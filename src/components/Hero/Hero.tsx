@@ -1,5 +1,6 @@
 import { FiArrowRight, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import heroVisual from "../../assets/images/hero-visual.png";
+import { scrollToSection } from "../../lib/lenis";
 import "./Hero.css";
 
 export default function Hero() {
@@ -22,11 +23,25 @@ export default function Hero() {
           </p>
 
           <div className="hero__actions">
-            <a href="#projects" className="btn btn--primary">
+            <a
+              href="#projects"
+              className="btn btn--primary"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("projects");
+              }}
+            >
               Ver proyectos
               <FiArrowRight />
             </a>
-            <a href="#contact" className="btn btn--outline">
+            <a
+              href="#contact"
+              className="btn btn--outline"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact");
+              }}
+            >
               Contactarme
             </a>
           </div>

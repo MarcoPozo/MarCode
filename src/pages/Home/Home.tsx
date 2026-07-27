@@ -5,6 +5,7 @@ import About from "../../components/About/About";
 import Skills from "../../components/Skills/Skills";
 import Projects from "../../components/Projects/Projects";
 import Contact from "../../components/Contact/Contact";
+import { scrollToSection } from "../../lib/lenis";
 
 export default function Home() {
   const { hash } = useLocation();
@@ -13,12 +14,9 @@ export default function Home() {
     if (!hash) return;
 
     const id = hash.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-      requestAnimationFrame(() => {
-        el.scrollIntoView({ behavior: "smooth" });
-      });
-    }
+    requestAnimationFrame(() => {
+      scrollToSection(id);
+    });
   }, [hash]);
 
   return (

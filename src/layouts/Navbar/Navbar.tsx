@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useActiveSection } from "../../hooks/useActiveSection";
+import { scrollToSection } from "../../lib/lenis";
 import "./Navbar.css";
 
 const navLinks = [
@@ -17,6 +18,14 @@ export default function Navbar() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
   const activeId = useActiveSection(navLinks.map((link) => link.id));
+
+  const handleLinkClick = (e: React.MouseEvent, id: string) => {
+    if (isHome) {
+      e.preventDefault();
+      scrollToSection(id);
+    }
+    setIsOpen(false);
+  };
 
   return (
     <nav className="navbar">
@@ -41,7 +50,7 @@ export default function Navbar() {
                 className={`navbar__link ${
                   isHome && activeId === link.id ? "navbar__link--active" : ""
                 }`}
-                onClick={() => setIsOpen(false)}>
+                onClick={(e) => handleLinkClick(e, link.id)}>
                 {link.label}
               </a>
             </li>

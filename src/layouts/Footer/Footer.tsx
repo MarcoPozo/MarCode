@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { scrollToSection } from "../../lib/lenis";
 import "./Footer.css";
 
 const quickLinks = [
@@ -20,6 +21,13 @@ export default function Footer() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
 
+  const handleLinkClick = (e: React.MouseEvent, id: string) => {
+    if (isHome) {
+      e.preventDefault();
+      scrollToSection(id);
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="container footer__grid">
@@ -38,7 +46,10 @@ export default function Footer() {
           <ul>
             {quickLinks.map((link) => (
               <li key={link.id}>
-                <a href={isHome ? `#${link.id}` : `/#${link.id}`}>
+                <a
+                  href={isHome ? `#${link.id}` : `/#${link.id}`}
+                  onClick={(e) => handleLinkClick(e, link.id)}
+                >
                   {link.label}
                 </a>
               </li>

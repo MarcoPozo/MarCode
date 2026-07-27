@@ -4,7 +4,7 @@ import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
 import "./Projects.css";
 
-const PREVIEW_COUNT = 6;
+const PREVIEW_COUNT = 3;
 
 export default function Projects() {
   const preview = projects.slice(0, PREVIEW_COUNT);

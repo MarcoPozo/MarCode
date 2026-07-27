@@ -21,6 +21,8 @@
 .hero__visual img {
   width: 100%;
   max-width: 780px;
+  max-height: min(60vh, 560px);
+  object-fit: contain;
   filter: drop-shadow(0 30px 50px var(--shadow-color))
     drop-shadow(0 0 60px var(--accent-subtle));
 }

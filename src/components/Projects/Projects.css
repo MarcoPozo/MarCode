@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-md);
-  margin-bottom: var(--space-3xl);
+  margin-bottom: var(--space-2xl);
 }
 
 .projects__badge {
@@ -33,7 +33,7 @@
 .projects__more {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-xl);
 }
 
 @media (max-width: 900px) {

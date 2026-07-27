@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowRight, FiFolder } from "react-icons/fi";
 import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
 import "./Projects.css";
@@ -13,7 +13,9 @@ export default function Projects() {
     <section id="projects" className="section-view projects">
       <div className="container">
         <div className="projects__header">
-          <span className="projects__badge">Proyectos</span>
+          <span className="projects__badge">
+            <FiFolder /> Proyectos
+          </span>
           <h2 className="projects__title">
             Algunos trabajos que he{" "}
             <span className="accent-text">construido</span>

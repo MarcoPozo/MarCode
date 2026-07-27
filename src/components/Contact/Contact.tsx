@@ -1,31 +1,48 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { FiGithub, FiLinkedin, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import {
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiMapPin,
+  FiMessageCircle,
+  FiPhone,
+} from "react-icons/fi";
 import "./Contact.css";
 
 const contactInfo = [
-  { icon: FiMail, label: "marco10011111@gmail.com", href: "mailto:marco10011111@gmail.com" },
+  {
+    icon: FiMail,
+    label: "marco10011111@gmail.com",
+    href: "mailto:marco10011111@gmail.com",
+  },
   { icon: FiPhone, label: "+593 99 775 0258", href: "tel:+593997750258" },
   { icon: FiMapPin, label: "Quito, Ecuador", href: undefined },
 ];
 
 const socials = [
   { icon: FiGithub, label: "GitHub", href: "https://github.com/MarcoPozo" },
-  { icon: FiLinkedin, label: "LinkedIn", href: "https://linkedin.com/in/marcoopozo" },
+  {
+    icon: FiLinkedin,
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/marcoopozo",
+  },
 ];
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Contacto desde el portfolio - ${form.name}`);
+    const subject = encodeURIComponent(
+      `Contacto desde el portfolio - ${form.name}`,
+    );
     const body = encodeURIComponent(`${form.message}\n\n${form.email}`);
     window.location.href = `mailto:marco10011111@gmail.com?subject=${subject}&body=${body}`;
   };
@@ -34,10 +51,11 @@ export default function Contact() {
     <section id="contact" className="section-view contact">
       <div className="container contact__grid">
         <div className="contact__intro">
-          <span className="contact__badge">Contacto</span>
+          <span className="contact__badge">
+            <FiMessageCircle /> Contacto
+          </span>
           <h2 className="contact__title">
-            Hablemos de tu próximo{" "}
-            <span className="accent-text">proyecto</span>
+            Hablemos de tu próximo <span className="accent-text">proyecto</span>
           </h2>
           <p className="contact__text">
             ¿Tenés una idea, una oportunidad laboral o simplemente querés
@@ -67,8 +85,7 @@ export default function Contact() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={social.label}
-              >
+                aria-label={social.label}>
                 <social.icon />
               </a>
             ))}

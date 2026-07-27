@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft, FiFolder } from "react-icons/fi";
 import { projects } from "../../data/projects";
 import ProjectCard from "../../components/Projects/ProjectCard";
 import "./ProjectsPage.css";
@@ -13,7 +13,9 @@ export default function ProjectsPage() {
         </Link>
 
         <div className="projects-page__header">
-          <span className="projects-page__badge">Proyectos</span>
+          <span className="projects-page__badge">
+            <FiFolder /> Proyectos
+          </span>
           <h1 className="projects-page__title">Todos los proyectos</h1>
           <p className="projects-page__subtitle">
             Un repaso completo por los proyectos institucionales y freelance

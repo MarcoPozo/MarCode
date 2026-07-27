@@ -1,5 +1,5 @@
-import { FiArrowRight, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-import heroVisual from "../../assets/images/hero-visual.png";
+import { FiArrowRight, FiCode, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import heroVisual from "../../assets/images/hero-visual.webp";
 import { scrollToSection } from "../../lib/lenis";
 import "./Hero.css";
 
@@ -8,7 +8,9 @@ export default function Hero() {
     <section id="hero" className="section-view hero">
       <div className="container hero__grid">
         <div className="hero__content">
-          <span className="hero__badge">Full Stack Developer</span>
+          <span className="hero__badge">
+            <FiCode /> Full Stack Developer
+          </span>
 
           <h1 className="hero__name">Marco Pozo</h1>
 

@@ -21,6 +21,9 @@
 }
 
 .projects-page__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--accent-text);

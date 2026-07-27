@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { FiCpu } from "react-icons/fi";
 import "./Skills.css";
 
 const skillGroups = [
@@ -47,7 +48,9 @@ export default function Skills() {
     <section id="skills" className="section-view skills">
       <div className="container">
         <div className="skills__header">
-          <span className="skills__badge">Skills</span>
+          <span className="skills__badge">
+            <FiCpu /> Skills
+          </span>
           <h2 className="skills__title">
             Tecnologías con las que{" "}
             <span className="accent-text">trabajo</span>

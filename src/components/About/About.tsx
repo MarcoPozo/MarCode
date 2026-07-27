@@ -1,3 +1,4 @@
+import { FiUser } from "react-icons/fi";
 import "./About.css";
 
 const stats = [
@@ -18,7 +19,9 @@ export default function About() {
     <section id="about" className="section-view about">
       <div className="container about__grid">
         <div className="about__intro">
-          <span className="about__badge">Sobre mí</span>
+          <span className="about__badge">
+            <FiUser /> Sobre mí
+          </span>
 
           <h2 className="about__title">
             Convierto ideas en productos digitales{" "}

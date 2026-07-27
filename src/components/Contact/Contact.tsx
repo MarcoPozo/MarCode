@@ -8,6 +8,7 @@ import {
   FiMessageCircle,
   FiPhone,
 } from "react-icons/fi";
+import { useReveal } from "../../hooks/useReveal";
 import "./Contact.css";
 
 const contactInfo = [
@@ -31,6 +32,8 @@ const socials = [
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const { ref: introRef, isVisible: introVisible } = useReveal<HTMLDivElement>();
+  const { ref: formRef, isVisible: formVisible } = useReveal<HTMLFormElement>();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -50,7 +53,10 @@ export default function Contact() {
   return (
     <section id="contact" className="section-view contact">
       <div className="container contact__grid">
-        <div className="contact__intro">
+        <div
+          ref={introRef}
+          className={`contact__intro reveal ${introVisible ? "is-visible" : ""}`}
+        >
           <span className="contact__badge">
             <FiMessageCircle /> Contacto
           </span>
@@ -92,7 +98,12 @@ export default function Contact() {
           </div>
         </div>
 
-        <form className="contact__form" onSubmit={handleSubmit}>
+        <form
+          ref={formRef}
+          className={`contact__form reveal ${formVisible ? "is-visible" : ""}`}
+          style={{ transitionDelay: "150ms" }}
+          onSubmit={handleSubmit}
+        >
           <div className="contact__field">
             <label htmlFor="name">Nombre</label>
             <input

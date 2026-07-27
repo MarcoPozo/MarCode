@@ -1,4 +1,5 @@
 import { FiUser } from "react-icons/fi";
+import { useReveal } from "../../hooks/useReveal";
 import "./About.css";
 
 const stats = [
@@ -15,10 +16,16 @@ const focusAreas = [
 ];
 
 export default function About() {
+  const { ref: introRef, isVisible: introVisible } = useReveal<HTMLDivElement>();
+  const { ref: statsRef, isVisible: statsVisible } = useReveal<HTMLDivElement>();
+
   return (
     <section id="about" className="section-view about">
       <div className="container about__grid">
-        <div className="about__intro">
+        <div
+          ref={introRef}
+          className={`about__intro reveal ${introVisible ? "is-visible" : ""}`}
+        >
           <span className="about__badge">
             <FiUser /> Sobre mí
           </span>
@@ -54,7 +61,11 @@ export default function About() {
           </div>
         </div>
 
-        <div className="about__stats">
+        <div
+          ref={statsRef}
+          className={`about__stats reveal ${statsVisible ? "is-visible" : ""}`}
+          style={{ transitionDelay: "150ms" }}
+        >
           {stats.map((stat) => (
             <div key={stat.label} className="about__stat">
               <span className="about__stat-value">{stat.value}</span>

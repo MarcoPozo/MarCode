@@ -1,17 +1,24 @@
 import { FiCode, FiExternalLink, FiGithub } from "react-icons/fi";
 import type { Project } from "../../types";
+import { useReveal } from "../../hooks/useReveal";
 import "./ProjectCard.css";
 
 interface ProjectCardProps {
   project: Project;
+  index?: number;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const { title, description, technologies, imageUrl, repoUrl, liveUrl } =
     project;
+  const { ref, isVisible } = useReveal<HTMLElement>();
 
   return (
-    <article className="project-card">
+    <article
+      ref={ref}
+      className={`project-card reveal ${isVisible ? "is-visible" : ""}`}
+      style={{ transitionDelay: `${(index % 3) * 100}ms` }}
+    >
       <div className="project-card__visual">
         {imageUrl ? (
           <img src={imageUrl} alt={title} />

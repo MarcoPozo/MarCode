@@ -2,17 +2,22 @@ import { Link } from "react-router-dom";
 import { FiArrowRight, FiFolder } from "react-icons/fi";
 import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
+import { useReveal } from "../../hooks/useReveal";
 import "./Projects.css";
 
 const PREVIEW_COUNT = 3;
 
 export default function Projects() {
   const preview = projects.slice(0, PREVIEW_COUNT);
+  const { ref: headerRef, isVisible: headerVisible } = useReveal<HTMLDivElement>();
 
   return (
     <section id="projects" className="section-view projects">
       <div className="container">
-        <div className="projects__header">
+        <div
+          ref={headerRef}
+          className={`projects__header reveal ${headerVisible ? "is-visible" : ""}`}
+        >
           <span className="projects__badge">
             <FiFolder /> Proyectos
           </span>
@@ -23,8 +28,8 @@ export default function Projects() {
         </div>
 
         <div className="projects__grid">
-          {preview.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {preview.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
 

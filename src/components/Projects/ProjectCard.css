@@ -5,7 +5,13 @@
   border: var(--border-thin) solid var(--border-subtle);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Compound selector so this always wins over the generic .reveal transition
+   regardless of CSS load order — the card needs its own faster border/transform
+   timing for hover on top of the reveal-in fade. */
+.project-card.reveal {
+  transition: border-color var(--transition-fast), transform 0.4s ease, opacity 0.6s ease;
 }
 
 .project-card:hover {

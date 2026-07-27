@@ -1,6 +1,7 @@
 import Lenis from "lenis";
 
 let lenis: Lenis | null = null;
+let rafId: number | null = null;
 
 export function initLenis() {
   if (lenis) return lenis;
@@ -12,11 +13,20 @@ export function initLenis() {
 
   function raf(time: number) {
     lenis?.raf(time);
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
   }
-  requestAnimationFrame(raf);
+  rafId = requestAnimationFrame(raf);
 
   return lenis;
+}
+
+export function destroyLenis() {
+  if (rafId !== null) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+  lenis?.destroy();
+  lenis = null;
 }
 
 export function getLenis() {

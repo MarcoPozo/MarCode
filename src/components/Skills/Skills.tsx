@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import { FiCpu } from "react-icons/fi";
+import { useReveal } from "../../hooks/useReveal";
 import "./Skills.css";
 
 const skillGroups = [
@@ -43,11 +44,44 @@ const skillGroups = [
   },
 ];
 
+function SkillCard({
+  group,
+  index,
+}: {
+  group: (typeof skillGroups)[number];
+  index: number;
+}) {
+  const { ref, isVisible } = useReveal<HTMLDivElement>();
+
+  return (
+    <div
+      ref={ref}
+      className={`skills__card reveal ${isVisible ? "is-visible" : ""}`}
+      style={{ transitionDelay: `${index * 80}ms` }}
+    >
+      <h3 className="skills__category">{group.category}</h3>
+      <div className="skills__items">
+        {group.skills.map((skill) => (
+          <div key={skill.name} className="skills__item">
+            <Icon icon={skill.icon} className="skills__icon" />
+            <span className="skills__name">{skill.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Skills() {
+  const { ref: headerRef, isVisible: headerVisible } = useReveal<HTMLDivElement>();
+
   return (
     <section id="skills" className="section-view skills">
       <div className="container">
-        <div className="skills__header">
+        <div
+          ref={headerRef}
+          className={`skills__header reveal ${headerVisible ? "is-visible" : ""}`}
+        >
           <span className="skills__badge">
             <FiCpu /> Skills
           </span>
@@ -58,18 +92,8 @@ export default function Skills() {
         </div>
 
         <div className="skills__grid">
-          {skillGroups.map((group) => (
-            <div key={group.category} className="skills__card">
-              <h3 className="skills__category">{group.category}</h3>
-              <div className="skills__items">
-                {group.skills.map((skill) => (
-                  <div key={skill.name} className="skills__item">
-                    <Icon icon={skill.icon} className="skills__icon" />
-                    <span className="skills__name">{skill.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {skillGroups.map((group, index) => (
+            <SkillCard key={group.category} group={group} index={index} />
           ))}
         </div>
       </div>

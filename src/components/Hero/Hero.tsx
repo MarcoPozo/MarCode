@@ -1,13 +1,20 @@
 import { FiArrowRight, FiCode, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import heroVisual from "../../assets/images/hero-visual.webp";
 import { scrollToSection } from "../../lib/lenis";
+import { useReveal } from "../../hooks/useReveal";
 import "./Hero.css";
 
 export default function Hero() {
+  const { ref: contentRef, isVisible: contentVisible } = useReveal<HTMLDivElement>();
+  const { ref: visualRef, isVisible: visualVisible } = useReveal<HTMLDivElement>();
+
   return (
     <section id="hero" className="section-view hero">
       <div className="container hero__grid">
-        <div className="hero__content">
+        <div
+          ref={contentRef}
+          className={`hero__content reveal ${contentVisible ? "is-visible" : ""}`}
+        >
           <span className="hero__badge">
             <FiCode /> Full Stack Developer
           </span>
@@ -69,7 +76,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero__visual">
+        <div
+          ref={visualRef}
+          className={`hero__visual reveal ${visualVisible ? "is-visible" : ""}`}
+          style={{ transitionDelay: "150ms" }}
+        >
           <img
             src={heroVisual}
             alt="Ilustración de un espacio de trabajo de desarrollo flotante"

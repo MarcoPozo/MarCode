@@ -2,7 +2,7 @@ import { FiCode, FiFolder, FiGithub, FiLinkedin, FiMail, FiMessageCircle } from 
 import { scrollToSection } from "../../lib/lenis";
 import { useReveal } from "../../hooks/useReveal";
 import { Button } from "../Button/Button";
-import FlowField from "../FlowField/FlowField";
+import ShaderNoise from "../ShaderNoise/ShaderNoise";
 import "./Hero.css";
 
 export default function Hero() {
@@ -10,7 +10,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="section-view hero">
-      <FlowField />
+      <ShaderNoise />
       <div className="container hero__grid">
         <div
           ref={contentRef}

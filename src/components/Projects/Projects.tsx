@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { FiArrowRight, FiFolder } from "react-icons/fi";
 import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
 import { useReveal } from "../../hooks/useReveal";
+import { MagneticRouterLink } from "../Magnetic/MagneticRouterLink";
 import "./Projects.css";
 
 const PREVIEW_COUNT = 3;
@@ -35,10 +35,10 @@ export default function Projects() {
 
         {projects.length > PREVIEW_COUNT && (
           <div className="projects__more">
-            <Link to="/projects" className="btn btn--outline">
+            <MagneticRouterLink to="/projects" className="btn btn--outline">
               Ver todos los proyectos
               <FiArrowRight />
-            </Link>
+            </MagneticRouterLink>
           </div>
         )}
       </div>

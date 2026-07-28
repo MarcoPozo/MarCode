@@ -7,8 +7,10 @@ import {
   FiMapPin,
   FiMessageCircle,
   FiPhone,
+  FiSend,
 } from "react-icons/fi";
 import { useReveal } from "../../hooks/useReveal";
+import { Button } from "../Button/Button";
 import "./Contact.css";
 
 const contactInfo = [
@@ -143,9 +145,14 @@ export default function Contact() {
             />
           </div>
 
-          <button type="submit" className="btn btn--primary contact__submit">
+          <Button
+            type="submit"
+            variant="primary"
+            className="contact__submit"
+            icon={<FiSend />}
+          >
             Enviar mensaje
-          </button>
+          </Button>
         </form>
       </div>
     </section>

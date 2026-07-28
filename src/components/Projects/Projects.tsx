@@ -1,4 +1,4 @@
-import { FiArrowRight, FiFolder } from "react-icons/fi";
+import { FiFolder, FiGrid } from "react-icons/fi";
 import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
 import { useReveal } from "../../hooks/useReveal";
@@ -37,7 +37,7 @@ export default function Projects() {
           <div className="projects__more">
             <MagneticRouterLink to="/projects" className="btn btn--outline">
               Ver todos los proyectos
-              <FiArrowRight />
+              <FiGrid />
             </MagneticRouterLink>
           </div>
         )}

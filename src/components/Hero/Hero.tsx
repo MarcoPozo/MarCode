@@ -1,15 +1,16 @@
-import { FiArrowRight, FiCode, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-import heroVisual from "../../assets/images/hero-visual.webp";
+import { FiCode, FiFolder, FiGithub, FiLinkedin, FiMail, FiMessageCircle } from "react-icons/fi";
 import { scrollToSection } from "../../lib/lenis";
 import { useReveal } from "../../hooks/useReveal";
+import { Button } from "../Button/Button";
+import FlowField from "../FlowField/FlowField";
 import "./Hero.css";
 
 export default function Hero() {
   const { ref: contentRef, isVisible: contentVisible } = useReveal<HTMLDivElement>();
-  const { ref: visualRef, isVisible: visualVisible } = useReveal<HTMLDivElement>();
 
   return (
     <section id="hero" className="section-view hero">
+      <FlowField />
       <div className="container hero__grid">
         <div
           ref={contentRef}
@@ -19,7 +20,9 @@ export default function Hero() {
             <FiCode /> Full Stack Developer
           </span>
 
-          <h1 className="hero__name">Marco Pozo</h1>
+          <h1 className="hero__name">
+            Marco <span className="accent-text">Pozo</span>
+          </h1>
 
           <p className="hero__tagline">
             &ldquo;Haz cosas que los demás sueñen con hacer.&rdquo;
@@ -32,27 +35,24 @@ export default function Hero() {
           </p>
 
           <div className="hero__actions">
-            <a
+            <Button
+              as="a"
               href="#projects"
-              className="btn btn--primary"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("projects");
-              }}
+              variant="primary"
+              icon={<FiFolder />}
+              onClick={() => scrollToSection("projects")}
             >
               Ver proyectos
-              <FiArrowRight />
-            </a>
-            <a
+            </Button>
+            <Button
+              as="a"
               href="#contact"
-              className="btn btn--outline"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("contact");
-              }}
+              variant="outline"
+              icon={<FiMessageCircle />}
+              onClick={() => scrollToSection("contact")}
             >
               Contactarme
-            </a>
+            </Button>
           </div>
 
           <div className="hero__socials">
@@ -74,17 +74,6 @@ export default function Hero() {
               <FiMail />
             </a>
           </div>
-        </div>
-
-        <div
-          ref={visualRef}
-          className={`hero__visual reveal ${visualVisible ? "is-visible" : ""}`}
-          style={{ transitionDelay: "150ms" }}
-        >
-          <img
-            src={heroVisual}
-            alt="Ilustración de un espacio de trabajo de desarrollo flotante"
-          />
         </div>
       </div>
     </section>

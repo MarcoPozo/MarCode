@@ -135,12 +135,17 @@ export default function ShaderNoise() {
     let height = 0;
 
     const resize = () => {
+      // Extend the canvas up behind the fixed navbar (`.hero` starts right
+      // below it) so the glass navbar blurs the shader instead of empty bg.
+      const navbarHeight =
+        document.querySelector<HTMLElement>(".navbar")?.offsetHeight ?? 0;
       width = parent.clientWidth;
-      height = parent.clientHeight;
+      height = parent.clientHeight + navbarHeight;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
+      canvas.style.top = `${-navbarHeight}px`;
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(uResolution, canvas.width, canvas.height);
     };

@@ -48,7 +48,7 @@
 .hero__tagline {
   font-family: var(--font-heading);
   font-size: var(--text-2xl);
-  font-weight: var(--weight-medium);
+  font-weight: var(--weight-regular);
   color: var(--text-primary);
   font-style: italic;
   white-space: nowrap;

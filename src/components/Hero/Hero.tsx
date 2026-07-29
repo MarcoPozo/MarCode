@@ -40,6 +40,7 @@ export default function Hero() {
               href="#projects"
               variant="primary"
               icon={<FiFolder />}
+              iconPosition="left"
               onClick={() => scrollToSection("projects")}
             >
               Ver proyectos
@@ -49,6 +50,7 @@ export default function Hero() {
               href="#contact"
               variant="outline"
               icon={<FiMessageCircle />}
+              iconPosition="left"
               onClick={() => scrollToSection("contact")}
             >
               Contactarme

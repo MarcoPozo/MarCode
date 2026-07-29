@@ -1,10 +1,10 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 /* Custom properties */
 :root {
-  --font-heading: 'Unbounded', system-ui, sans-serif;
-  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-heading: 'Anton', system-ui, sans-serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -173,7 +173,9 @@ main {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: var(--weight-semibold);
+  /* Archivo Black only ships one weight (400, already "black" by design) —
+     requesting 600 would trigger synthetic bold instead of the real font. */
+  font-weight: var(--weight-regular);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--text-primary);

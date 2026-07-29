@@ -150,6 +150,7 @@ export default function Contact() {
             variant="primary"
             className="contact__submit"
             icon={<FiSend />}
+            iconPosition="left"
           >
             Enviar mensaje
           </Button>

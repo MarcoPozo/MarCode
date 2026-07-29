@@ -36,8 +36,8 @@ export default function Projects() {
         {projects.length > PREVIEW_COUNT && (
           <div className="projects__more">
             <MagneticRouterLink to="/projects" className="btn btn--outline">
-              Ver todos los proyectos
               <FiGrid />
+              Ver todos los proyectos
             </MagneticRouterLink>
           </div>
         )}

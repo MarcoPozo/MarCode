@@ -74,7 +74,7 @@
 .about__stat-value {
   font-family: var(--font-heading);
   font-size: var(--text-3xl);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-regular);
   color: var(--accent-text);
   line-height: var(--leading-tight);
 }

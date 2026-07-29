@@ -21,54 +21,62 @@
 .hero__content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: var(--space-md);
-  max-width: 760px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.hero__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
+.hero__eyebrow {
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--accent-text);
-  background-color: var(--accent-subtle);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-full);
-  border: var(--border-thin) solid var(--border-accent);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
 }
 
 .hero__name {
-  font-size: clamp(4rem, 11vw, 9rem);
+  position: relative;
+  font-size: clamp(5rem, 15vw, 12rem);
   line-height: 0.95;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
+  cursor: default;
+  user-select: none;
 }
 
-.hero__tagline {
-  font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-regular);
-  color: var(--text-primary);
-  font-style: italic;
-  white-space: nowrap;
+.hero__name-base {
+  display: block;
+}
+
+.hero__name-glow {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  -webkit-mask-image: radial-gradient(0px at 0px 0px, #000 0%, transparent 72%);
+  mask-image: radial-gradient(0px at 0px 0px, #000 0%, transparent 72%);
 }
 
 .hero__description {
   font-size: var(--text-lg);
   color: var(--text-secondary);
-  max-width: 560px;
+  max-width: 700px;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-md);
   margin-top: var(--space-md);
 }
 
 .hero__socials {
   display: flex;
+  justify-content: center;
   gap: var(--space-lg);
   margin-top: var(--space-xl);
 }
@@ -85,19 +93,7 @@
 
 @media (max-width: 900px) {
   .hero__content {
-    align-items: center;
-    text-align: center;
     max-width: 100%;
-  }
-
-  .hero__actions,
-  .hero__socials {
-    justify-content: center;
-  }
-
-  .hero__tagline {
-    font-size: var(--text-xl);
-    white-space: normal;
   }
 }
 
@@ -110,9 +106,5 @@
   .hero__actions .btn {
     justify-content: center;
     width: 100%;
-  }
-
-  .hero__tagline {
-    font-size: var(--text-lg);
   }
 }

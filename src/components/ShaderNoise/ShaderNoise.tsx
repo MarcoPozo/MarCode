@@ -53,7 +53,12 @@ void main() {
   n = n * 0.5 + 0.5;
 
   float glow = smoothstep(0.35, 0.9, n);
-  vec3 color = mix(uBg, uAccent, glow * 0.5);
+
+  // gl_FragCoord.y is 0 at the bottom of the canvas — fade the noise's own
+  // color contribution out near the bottom edge so it blends into the next
+  // section's solid background instead of being covered by a CSS overlay.
+  float edgeFade = smoothstep(0.0, 0.32, uv.y);
+  vec3 color = mix(uBg, uAccent, glow * 0.5 * edgeFade);
 
   gl_FragColor = vec4(color, 1.0);
 }

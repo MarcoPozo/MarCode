@@ -2,17 +2,6 @@
   position: relative;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 22%;
-  background: linear-gradient(to bottom, transparent 0%, var(--bg-primary) 100%);
-  pointer-events: none;
-}
-
 .hero__grid {
   position: relative;
   z-index: 1;
@@ -78,7 +67,7 @@
   display: flex;
   justify-content: center;
   gap: var(--space-lg);
-  margin-top: var(--space-xl);
+  margin-top: var(--space-lg);
 }
 
 .hero__socials a {

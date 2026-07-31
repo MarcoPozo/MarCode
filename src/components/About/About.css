@@ -1,4 +1,10 @@
+.about {
+  position: relative;
+}
+
 .about__grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.4fr 0.6fr;
   gap: var(--space-2xl);
@@ -12,28 +18,16 @@
   gap: var(--space-md);
 }
 
-.about__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  color: var(--accent-text);
-  background-color: var(--accent-subtle);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-full);
-  border: var(--border-thin) solid var(--border-accent);
-}
-
 .about__title {
   font-size: var(--text-4xl);
   line-height: var(--leading-tight);
 }
 
 .about__text {
-  font-size: var(--text-lg);
+  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+  line-height: var(--leading-snug);
   color: var(--text-secondary);
-  max-width: 620px;
+  max-width: 700px;
 }
 
 .about__focus {

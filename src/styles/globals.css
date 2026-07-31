@@ -252,6 +252,14 @@ img {
   color: var(--accent-text);
 }
 
+.eyebrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--accent-text);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
 /* Scroll reveal */
 .reveal {
   opacity: 0;

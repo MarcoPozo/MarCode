@@ -17,7 +17,7 @@ export default function Hero() {
           ref={contentRef}
           className={`hero__content reveal ${contentVisible ? "is-visible" : ""}`}
         >
-          <span className="hero__eyebrow">Full Stack Developer</span>
+          <span className="eyebrow">Full Stack Developer</span>
 
           <HeroName />
 

@@ -1,0 +1,14 @@
+.reveal-char {
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+
+.reveal-char.is-lit {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-char {
+    opacity: 1;
+  }
+}

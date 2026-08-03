@@ -8,13 +8,6 @@ const stats = [
   { value: "2", label: "Trabajo en equipo / freelance" },
 ];
 
-const focusAreas = [
-  "Frontend Development",
-  "Backend Development",
-  "UI/UX Design",
-  "Automatización",
-];
-
 export default function About() {
   const { ref: introRef, isVisible: introVisible } = useReveal<HTMLDivElement>();
   const { ref: statsRef, isVisible: statsVisible } = useReveal<HTMLDivElement>();
@@ -37,14 +30,6 @@ export default function About() {
             className="about__text"
             text="Más de 3 años construyendo soluciones web, entre proyectos institucionales y freelance. Me enfoco en frontend sin perder de vista el backend, cuidando cada detalle hasta que el producto se sienta realmente pulido."
           />
-
-          <div className="about__focus">
-            {focusAreas.map((area) => (
-              <span key={area} className="about__tag">
-                {area}
-              </span>
-            ))}
-          </div>
         </div>
 
         <div

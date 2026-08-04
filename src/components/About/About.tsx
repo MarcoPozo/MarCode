@@ -1,11 +1,12 @@
+import { FiCalendar, FiCheckCircle, FiUsers } from "react-icons/fi";
 import { useReveal } from "../../hooks/useReveal";
 import ScrollRevealText from "../ScrollRevealText/ScrollRevealText";
 import "./About.css";
 
 const stats = [
-  { value: "3+", label: "Años de experiencia" },
-  { value: "10+", label: "Proyectos entregados" },
-  { value: "2", label: "Trabajo en equipo / freelance" },
+  { value: "3+", label: "Años de experiencia", icon: FiCalendar },
+  { value: "10+", label: "Proyectos entregados", icon: FiCheckCircle },
+  { value: "2", label: "Trabajo en equipo / freelance", icon: FiUsers },
 ];
 
 export default function About() {
@@ -28,7 +29,7 @@ export default function About() {
 
           <ScrollRevealText
             className="about__text"
-            text="Más de 3 años construyendo soluciones web, entre proyectos institucionales y freelance. Me enfoco en frontend sin perder de vista el backend, cuidando cada detalle hasta que el producto se sienta realmente pulido."
+            text="Más de 3 años construyendo soluciones web, entre proyectos institucionales y freelance. Me enfoco en frontend sin perder de vista el backend, cuidando cada detalle hasta que el producto se sienta realmente pulido. Disfruto resolver problemas reales con código limpio y aprender algo nuevo en cada proyecto."
           />
         </div>
 
@@ -39,7 +40,10 @@ export default function About() {
         >
           {stats.map((stat) => (
             <div key={stat.label} className="about__stat">
-              <span className="about__stat-value">{stat.value}</span>
+              <div className="about__stat-top">
+                <stat.icon className="about__stat-icon" />
+                <span className="about__stat-value">{stat.value}</span>
+              </div>
               <span className="about__stat-label">{stat.label}</span>
             </div>
           ))}

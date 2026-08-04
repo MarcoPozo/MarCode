@@ -1,14 +1,17 @@
 .reveal-char {
-  opacity: 0.35;
-  transition: opacity 0.3s ease;
+  color: var(--text-secondary);
+  opacity: 0.45;
+  transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 .reveal-char.is-lit {
+  color: var(--text-primary);
   opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-char {
+    color: var(--text-primary);
     opacity: 1;
   }
 }

@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
-import { FiCpu } from "react-icons/fi";
 import { useReveal } from "../../hooks/useReveal";
+import DashedGrid from "../DashedGrid/DashedGrid";
 import "./Skills.css";
 
 const skillGroups = [
@@ -77,14 +77,13 @@ export default function Skills() {
 
   return (
     <section id="skills" className="section-view skills">
+      <DashedGrid />
       <div className="container">
         <div
           ref={headerRef}
           className={`skills__header reveal ${headerVisible ? "is-visible" : ""}`}
         >
-          <span className="skills__badge">
-            <FiCpu /> Skills
-          </span>
+          <span className="eyebrow">Skills</span>
           <h2 className="skills__title">
             Tecnologías con las que{" "}
             <span className="accent-text">trabajo</span>

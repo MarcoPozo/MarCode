@@ -1,0 +1,86 @@
+.dashed-grid {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+}
+
+.dashed-grid__base,
+.dashed-grid__bright {
+  position: absolute;
+  inset: 0;
+  background-color: var(--text-muted);
+  -webkit-mask-image: var(--dashed-grid-mask);
+  mask-image: var(--dashed-grid-mask);
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  -webkit-mask-size: 60px 60px;
+  mask-size: 60px 60px;
+}
+
+.dashed-grid__base {
+  opacity: 0.25;
+}
+
+.dashed-grid__bright {
+  opacity: 0.6;
+}
+
+.dashed-grid__bright--accent {
+  background-color: var(--accent-text);
+  opacity: 0.8;
+}
+
+.dashed-grid__shimmer-clip,
+.dashed-grid__spotlight-clip {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 72%);
+  mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 72%);
+}
+
+.dashed-grid__shimmer-clip {
+  -webkit-mask-size: 40vw 130%;
+  mask-size: 40vw 130%;
+  animation: dashed-grid-shimmer 10s linear infinite;
+}
+
+@keyframes dashed-grid-shimmer {
+  0% {
+    -webkit-mask-position: -40vw center;
+    mask-position: -40vw center;
+  }
+  100% {
+    -webkit-mask-position: calc(100% + 40vw) center;
+    mask-position: calc(100% + 40vw) center;
+  }
+}
+
+.dashed-grid__spotlight-clip {
+  -webkit-mask-size: 260px 260px;
+  mask-size: 260px 260px;
+  -webkit-mask-position: var(--spot-x, -9999px) var(--spot-y, -9999px);
+  mask-position: var(--spot-x, -9999px) var(--spot-y, -9999px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashed-grid__shimmer-clip {
+    animation: none;
+  }
+}

@@ -43,28 +43,15 @@
   gap: var(--space-xs);
   padding: var(--space-xl);
   border-radius: var(--radius-2xl);
-  border: var(--border-thin) solid var(--border-subtle);
-  background: var(--bg-elevated);
-}
-
-.about__stat:nth-child(1) {
+  border: var(--border-thin) solid rgba(255, 255, 255, 0.1);
   background:
-    radial-gradient(circle at 10% 150%, rgba(192, 57, 43, 0.5) 0%, transparent 38%),
-    radial-gradient(circle at 100% 150%, rgba(231, 76, 60, 0.28) 0%, transparent 35%),
-    var(--bg-elevated);
-}
-
-.about__stat:nth-child(2) {
-  background:
-    radial-gradient(circle at 100% 150%, rgba(192, 57, 43, 0.5) 0%, transparent 38%),
-    radial-gradient(circle at 10% 150%, rgba(231, 76, 60, 0.28) 0%, transparent 35%),
-    var(--bg-elevated);
-}
-
-.about__stat:nth-child(3) {
-  background:
-    radial-gradient(circle at 50% 160%, rgba(192, 57, 43, 0.55) 0%, transparent 42%),
-    var(--bg-elevated);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01) 45%),
+    var(--bg-glass);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 
 .about__stat-top {

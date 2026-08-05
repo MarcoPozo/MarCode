@@ -70,7 +70,6 @@ export default function DashedGrid() {
       style={{ "--dashed-grid-mask": GRID_MASK } as React.CSSProperties}
       aria-hidden="true"
     >
-      <div className="dashed-grid__base" />
       <div className="dashed-grid__shimmer-clip">
         <div className="dashed-grid__bright" />
       </div>

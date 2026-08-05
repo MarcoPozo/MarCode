@@ -19,7 +19,6 @@
   );
 }
 
-.dashed-grid__base,
 .dashed-grid__bright {
   position: absolute;
   inset: 0;
@@ -30,13 +29,6 @@
   mask-repeat: repeat;
   -webkit-mask-size: 60px 60px;
   mask-size: 60px 60px;
-}
-
-.dashed-grid__base {
-  opacity: 0.25;
-}
-
-.dashed-grid__bright {
   opacity: 0.6;
 }
 

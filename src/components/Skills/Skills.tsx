@@ -1,79 +1,31 @@
-import { Icon } from "@iconify/react";
 import { useReveal } from "../../hooks/useReveal";
 import DashedGrid from "../DashedGrid/DashedGrid";
 import "./Skills.css";
 
-const skillGroups = [
-  {
-    category: "Frontend",
-    skills: [
-      { name: "HTML5", icon: "logos:html-5" },
-      { name: "CSS3", icon: "logos:css-3" },
-      { name: "JavaScript", icon: "logos:javascript" },
-      { name: "TypeScript", icon: "logos:typescript-icon" },
-      { name: "React", icon: "logos:react" },
-      { name: "Vite", icon: "logos:vitejs" },
-      { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
-      { name: "Bootstrap", icon: "logos:bootstrap" },
-    ],
-  },
-  {
-    category: "Backend",
-    skills: [
-      { name: "Node.js", icon: "logos:nodejs-icon" },
-      { name: "Express", icon: "simple-icons:express" },
-      { name: "NestJS", icon: "logos:nestjs" },
-      { name: "PHP", icon: "logos:php" },
-    ],
-  },
-  {
-    category: "Bases de datos",
-    skills: [
-      { name: "MySQL", icon: "logos:mysql" },
-      { name: "PostgreSQL", icon: "logos:postgresql" },
-    ],
-  },
-  {
-    category: "Herramientas y diseño",
-    skills: [
-      { name: "Git", icon: "logos:git-icon" },
-      { name: "GitHub", icon: "mdi:github" },
-      { name: "Figma", icon: "logos:figma" },
-      { name: "Photoshop", icon: "logos:adobe-photoshop" },
-    ],
-  },
+const skills = [
+  { name: "HTML5", slug: "html" },
+  { name: "CSS3", slug: "css" },
+  { name: "JavaScript", slug: "js" },
+  { name: "TypeScript", slug: "ts" },
+  { name: "React", slug: "react" },
+  { name: "Vite", slug: "vite" },
+  { name: "Tailwind CSS", slug: "tailwind" },
+  { name: "Bootstrap", slug: "bootstrap" },
+  { name: "Node.js", slug: "nodejs" },
+  { name: "Express", slug: "express" },
+  { name: "NestJS", slug: "nestjs" },
+  { name: "PHP", slug: "php" },
+  { name: "MySQL", slug: "mysql" },
+  { name: "PostgreSQL", slug: "postgres" },
+  { name: "Git", slug: "git" },
+  { name: "GitHub", slug: "github" },
+  { name: "Figma", slug: "figma" },
+  { name: "Photoshop", slug: "ps" },
 ];
-
-function SkillCard({
-  group,
-  index,
-}: {
-  group: (typeof skillGroups)[number];
-  index: number;
-}) {
-  const { ref, isVisible } = useReveal<HTMLDivElement>();
-
-  return (
-    <div
-      ref={ref}
-      className={`skills__card reveal ${isVisible ? "is-visible" : ""}`}
-      style={{ transitionDelay: `${index * 80}ms` }}
-    >
-      <h3 className="skills__category">{group.category}</h3>
-      <div className="skills__items">
-        {group.skills.map((skill) => (
-          <div key={skill.name} className="skills__item">
-            <Icon icon={skill.icon} className="skills__icon" />
-            <span className="skills__name">{skill.name}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function Skills() {
   const { ref: headerRef, isVisible: headerVisible } = useReveal<HTMLDivElement>();
+  const { ref: gridRef, isVisible: gridVisible } = useReveal<HTMLDivElement>();
 
   return (
     <section id="skills" className="section-view skills">
@@ -90,9 +42,21 @@ export default function Skills() {
           </h2>
         </div>
 
-        <div className="skills__grid">
-          {skillGroups.map((group, index) => (
-            <SkillCard key={group.category} group={group} index={index} />
+        <div ref={gridRef} className="skills__grid">
+          {skills.map((skill, index) => (
+            <div
+              key={skill.name}
+              className={`skills__chip reveal ${gridVisible ? "is-visible" : ""}`}
+              style={{ transitionDelay: `${index * 30}ms` }}
+            >
+              <img
+                src={`https://skillicons.dev/icons?i=${skill.slug}`}
+                alt={skill.name}
+                className="skills__chip-icon"
+                loading="lazy"
+              />
+              <span className="skills__chip-name">{skill.name}</span>
+            </div>
           ))}
         </div>
       </div>

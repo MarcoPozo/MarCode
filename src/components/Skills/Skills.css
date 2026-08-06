@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-md);
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
 }
 
 .skills__title {
@@ -20,10 +20,25 @@
   line-height: var(--leading-tight);
 }
 
+.skills__categories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.skills__category-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-sm);
+}
+
 .skills__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: var(--space-sm);
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: var(--space-md);
 }
 
 .skills__chip {
@@ -31,17 +46,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
+  gap: var(--space-xs);
+  padding: var(--space-xs);
 }
 
 .skills__chip-icon {
-  width: clamp(3.5rem, 7vw, 5.5rem);
-  height: clamp(3.5rem, 7vw, 5.5rem);
+  width: 88px;
+  height: 88px;
 }
 
 .skills__chip-name {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--text-secondary);
 }
 
@@ -51,13 +66,17 @@
     text-align: center;
   }
 
+  .skills__category-title {
+    text-align: center;
+  }
+
   .skills__grid {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
   .skills__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }

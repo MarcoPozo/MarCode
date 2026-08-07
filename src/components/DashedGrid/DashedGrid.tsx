@@ -20,6 +20,8 @@ const SPOT_SIZE = 260;
 interface DashedGridProps {
   /** When false, renders a plain static grid — no shimmer sweep, no cursor spotlight. */
   interactive?: boolean;
+  /** Auto-sweeping glow that plays even without hovering. Only relevant when interactive. */
+  shimmer?: boolean;
   /** Fades all four edges (instead of just top/bottom) so the grid can bleed
    * past its container without a hard rectangular cutoff. */
   vignette?: boolean;
@@ -27,6 +29,7 @@ interface DashedGridProps {
 
 export default function DashedGrid({
   interactive = true,
+  shimmer = true,
   vignette = false,
 }: DashedGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -84,9 +87,11 @@ export default function DashedGrid({
     >
       {interactive ? (
         <>
-          <div className="dashed-grid__shimmer-clip">
-            <div className="dashed-grid__bright" />
-          </div>
+          {shimmer && (
+            <div className="dashed-grid__shimmer-clip">
+              <div className="dashed-grid__bright" />
+            </div>
+          )}
           <div ref={spotlightRef} className="dashed-grid__spotlight-clip">
             <div className="dashed-grid__bright dashed-grid__bright--accent" />
           </div>

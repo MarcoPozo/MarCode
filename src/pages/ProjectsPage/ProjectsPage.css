@@ -1,3 +1,12 @@
+.projects-page {
+  position: relative;
+}
+
+.projects-page > .container {
+  position: relative;
+  z-index: 1;
+}
+
 .projects-page__back {
   display: inline-flex;
   align-items: center;
@@ -18,19 +27,6 @@
   align-items: flex-start;
   gap: var(--space-md);
   margin-bottom: var(--space-3xl);
-}
-
-.projects-page__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  color: var(--accent-text);
-  background-color: var(--accent-subtle);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-full);
-  border: var(--border-thin) solid var(--border-accent);
 }
 
 .projects-page__title {

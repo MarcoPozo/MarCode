@@ -1,4 +1,4 @@
-import { FiGrid } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
 import { useReveal } from "../../hooks/useReveal";
@@ -33,9 +33,8 @@ export default function Projects() {
 
         {projects.length > PREVIEW_COUNT && (
           <div className="projects__more">
-            <MagneticRouterLink to="/projects" className="btn btn--outline">
-              <FiGrid />
-              Ver todos los proyectos
+            <MagneticRouterLink to="/projects" className="projects__more-link">
+              Ver más <FiArrowRight />
             </MagneticRouterLink>
           </div>
         )}

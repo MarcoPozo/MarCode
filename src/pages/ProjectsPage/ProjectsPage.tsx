@@ -1,21 +1,23 @@
-import { Link } from "react-router-dom";
-import { FiArrowLeft, FiFolder } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 import { projects } from "../../data/projects";
 import ProjectCard from "../../components/Projects/ProjectCard";
+import DashedGrid from "../../components/DashedGrid/DashedGrid";
+import { MagneticRouterLink } from "../../components/Magnetic/MagneticRouterLink";
 import "./ProjectsPage.css";
 
 export default function ProjectsPage() {
+  const projectsWithImages = projects.filter((project) => project.imageUrl);
+
   return (
     <section className="section projects-page">
+      <DashedGrid shimmer={false} />
       <div className="container">
-        <Link to="/#projects" className="projects-page__back">
+        <MagneticRouterLink to="/#projects" className="projects-page__back">
           <FiArrowLeft /> Volver al inicio
-        </Link>
+        </MagneticRouterLink>
 
         <div className="projects-page__header">
-          <span className="projects-page__badge">
-            <FiFolder /> Proyectos
-          </span>
+          <span className="eyebrow">Proyectos</span>
           <h1 className="projects-page__title">Todos los proyectos</h1>
           <p className="projects-page__subtitle">
             Un repaso completo por los proyectos institucionales y freelance
@@ -24,7 +26,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="projects-page__grid">
-          {projects.map((project, index) => (
+          {projectsWithImages.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>

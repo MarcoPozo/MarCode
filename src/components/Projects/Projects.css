@@ -23,8 +23,23 @@
 
 .projects__more {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   margin-top: var(--space-xl);
+}
+
+.projects__more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  transition: color var(--transition-fast), gap var(--transition-fast);
+}
+
+.projects__more-link:hover {
+  color: var(--accent-text);
+  gap: var(--space-sm);
 }
 
 @media (max-width: 900px) {

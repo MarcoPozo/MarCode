@@ -43,6 +43,10 @@ const skillGroups = [
         name: "Claude",
         iconUrl: "https://api.iconify.design/simple-icons/claude.svg?color=%23D97757",
       },
+      {
+        name: "Cloudinary",
+        iconUrl: "https://api.iconify.design/simple-icons/cloudinary.svg?color=%233448C5",
+      },
     ],
   },
 ];

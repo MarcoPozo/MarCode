@@ -39,6 +39,10 @@ const skillGroups = [
       { name: "GitHub", slug: "github" },
       { name: "Figma", slug: "figma" },
       { name: "Photoshop", slug: "ps" },
+      {
+        name: "Claude",
+        iconUrl: "https://api.iconify.design/simple-icons/claude.svg?color=%23D97757",
+      },
     ],
   },
 ];
@@ -60,17 +64,23 @@ function CategoryBlock({
     >
       <h3 className="skills__category-title">{group.category}</h3>
       <div className="skills__grid">
-        {group.skills.map((skill) => (
-          <div key={skill.name} className="skills__chip">
-            <img
-              src={`https://skillicons.dev/icons?i=${skill.slug}`}
-              alt={skill.name}
-              className="skills__chip-icon"
-              loading="lazy"
-            />
-            <span className="skills__chip-name">{skill.name}</span>
-          </div>
-        ))}
+        {group.skills.map((skill) => {
+          const iconSrc =
+            "iconUrl" in skill
+              ? skill.iconUrl
+              : `https://skillicons.dev/icons?i=${skill.slug}`;
+          return (
+            <div key={skill.name} className="skills__chip">
+              <img
+                src={iconSrc}
+                alt={skill.name}
+                className="skills__chip-icon"
+                loading="lazy"
+              />
+              <span className="skills__chip-name">{skill.name}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

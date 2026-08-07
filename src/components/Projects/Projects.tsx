@@ -1,4 +1,4 @@
-import { FiFolder, FiGrid } from "react-icons/fi";
+import { FiGrid } from "react-icons/fi";
 import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
 import { useReveal } from "../../hooks/useReveal";
@@ -18,9 +18,7 @@ export default function Projects() {
           ref={headerRef}
           className={`projects__header reveal ${headerVisible ? "is-visible" : ""}`}
         >
-          <span className="projects__badge">
-            <FiFolder /> Proyectos
-          </span>
+          <span className="eyebrow">Proyectos</span>
           <h2 className="projects__title">
             Algunos trabajos que he{" "}
             <span className="accent-text">construido</span>

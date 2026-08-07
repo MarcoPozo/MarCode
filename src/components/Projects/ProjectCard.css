@@ -29,12 +29,12 @@
    both on the homepage preview and as the first 3 cards on /projects. */
 .projects__grid .project-card:nth-child(1),
 .projects-page__grid .project-card:nth-child(1) {
-  --project-glow: #ffd100;
+  --project-glow: #a67c00;
 }
 
 .projects__grid .project-card:nth-child(2),
 .projects-page__grid .project-card:nth-child(2) {
-  --project-glow: #0033a0;
+  --project-glow: #1b3a6b;
 }
 
 .projects__grid .project-card:nth-child(3),
@@ -104,7 +104,7 @@
 
 .project-card__description {
   font-size: var(--text-sm);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.75);
   line-height: var(--leading-normal);
 }
 

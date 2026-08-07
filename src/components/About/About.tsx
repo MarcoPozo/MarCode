@@ -1,5 +1,6 @@
 import { FiCalendar, FiCheckCircle, FiUsers } from "react-icons/fi";
 import { useReveal } from "../../hooks/useReveal";
+import DashedGrid from "../DashedGrid/DashedGrid";
 import ScrollRevealText from "../ScrollRevealText/ScrollRevealText";
 import "./About.css";
 
@@ -38,6 +39,9 @@ export default function About() {
           className={`about__stats reveal ${statsVisible ? "is-visible" : ""}`}
           style={{ transitionDelay: "150ms" }}
         >
+          <div className="about__stats-halo">
+            <DashedGrid interactive={false} vignette />
+          </div>
           {stats.map((stat) => (
             <div key={stat.label} className="about__stat">
               <div className="about__stat-top">

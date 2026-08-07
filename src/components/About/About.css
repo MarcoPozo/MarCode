@@ -31,10 +31,17 @@
 }
 
 .about__stats {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: var(--space-md);
+}
+
+.about__stats-halo {
+  position: absolute;
+  inset: -73px -58px;
+  z-index: 0;
 }
 
 .about__stat {

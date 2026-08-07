@@ -17,11 +17,23 @@ const GRID_SVG =
 const GRID_MASK = `url("data:image/svg+xml,${encodeURIComponent(GRID_SVG)}")`;
 const SPOT_SIZE = 260;
 
-export default function DashedGrid() {
+interface DashedGridProps {
+  /** When false, renders a plain static grid — no shimmer sweep, no cursor spotlight. */
+  interactive?: boolean;
+  /** Fades all four edges (instead of just top/bottom) so the grid can bleed
+   * past its container without a hard rectangular cutoff. */
+  vignette?: boolean;
+}
+
+export default function DashedGrid({
+  interactive = true,
+  vignette = false,
+}: DashedGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!interactive) return;
     const container = containerRef.current;
     const spotlight = spotlightRef.current;
     const parent = container?.parentElement;
@@ -61,21 +73,27 @@ export default function DashedGrid() {
       parent.removeEventListener("mouseleave", onLeave);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [interactive]);
 
   return (
     <div
       ref={containerRef}
-      className="dashed-grid"
+      className={`dashed-grid ${vignette ? "dashed-grid--vignette" : ""}`}
       style={{ "--dashed-grid-mask": GRID_MASK } as React.CSSProperties}
       aria-hidden="true"
     >
-      <div className="dashed-grid__shimmer-clip">
-        <div className="dashed-grid__bright" />
-      </div>
-      <div ref={spotlightRef} className="dashed-grid__spotlight-clip">
-        <div className="dashed-grid__bright dashed-grid__bright--accent" />
-      </div>
+      {interactive ? (
+        <>
+          <div className="dashed-grid__shimmer-clip">
+            <div className="dashed-grid__bright" />
+          </div>
+          <div ref={spotlightRef} className="dashed-grid__spotlight-clip">
+            <div className="dashed-grid__bright dashed-grid__bright--accent" />
+          </div>
+        </>
+      ) : (
+        <div className="dashed-grid__static" />
+      )}
     </div>
   );
 }

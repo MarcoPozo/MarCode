@@ -1,28 +1,12 @@
 import { FiCalendar, FiCheckCircle, FiUsers } from "react-icons/fi";
 import { useReveal } from "../../hooks/useReveal";
-import DashedGrid from "../DashedGrid/DashedGrid";
 import ScrollRevealText from "../ScrollRevealText/ScrollRevealText";
 import "./About.css";
 
 const stats = [
-  {
-    value: "3+",
-    label: "Años de experiencia",
-    icon: FiCalendar,
-    glow: "rgba(166, 124, 0, 0.4)",
-  },
-  {
-    value: "10+",
-    label: "Proyectos entregados",
-    icon: FiCheckCircle,
-    glow: "rgba(27, 58, 107, 0.45)",
-  },
-  {
-    value: "2",
-    label: "Trabajo en equipo / freelance",
-    icon: FiUsers,
-    glow: "rgba(192, 57, 43, 0.35)",
-  },
+  { value: "3+", label: "Años de experiencia", icon: FiCalendar },
+  { value: "10+", label: "Proyectos entregados", icon: FiCheckCircle },
+  { value: "2", label: "Trabajo en equipo / freelance", icon: FiUsers },
 ];
 
 export default function About() {
@@ -54,15 +38,8 @@ export default function About() {
           className={`about__stats reveal ${statsVisible ? "is-visible" : ""}`}
           style={{ transitionDelay: "150ms" }}
         >
-          <div className="about__stats-halo">
-            <DashedGrid interactive={false} vignette />
-          </div>
           {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="about__stat"
-              style={{ "--stat-glow": stat.glow } as React.CSSProperties}
-            >
+            <div key={stat.label} className="about__stat">
               <div className="about__stat-top">
                 <stat.icon className="about__stat-icon" />
                 <span className="about__stat-value">{stat.value}</span>

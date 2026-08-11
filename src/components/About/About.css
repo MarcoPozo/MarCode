@@ -38,28 +38,18 @@
   gap: var(--space-md);
 }
 
-.about__stats-halo {
-  position: absolute;
-  inset: -73px -58px;
-  z-index: 0;
-}
-
 .about__stat {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
   padding: var(--space-xl);
   border-radius: var(--radius-2xl);
-  border: var(--border-thin) solid rgba(255, 255, 255, 0.1);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01) 45%),
-    linear-gradient(160deg, var(--stat-glow, transparent) 0%, transparent 70%),
-    var(--bg-glass);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: var(--border-thin) solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-card-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .about__stat-top {

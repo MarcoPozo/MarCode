@@ -1,17 +1,22 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import { AnimatePresence, motion } from "motion/react";
 import {
+  FiCheck,
+  FiCheckCircle,
   FiGithub,
   FiLinkedin,
+  FiLoader,
   FiMail,
   FiMapPin,
-  FiMessageCircle,
-  FiPhone,
   FiSend,
 } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa6";
 import { useReveal } from "../../hooks/useReveal";
-import { Button } from "../Button/Button";
 import "./Contact.css";
+
+type SendStatus = "idle" | "sending" | "success" | "error";
 
 const contactInfo = [
   {
@@ -19,7 +24,6 @@ const contactInfo = [
     label: "marco10011111@gmail.com",
     href: "mailto:marco10011111@gmail.com",
   },
-  { icon: FiPhone, label: "+593 99 775 0258", href: "tel:+593997750258" },
   { icon: FiMapPin, label: "Quito, Ecuador", href: undefined },
 ];
 
@@ -30,10 +34,16 @@ const socials = [
     label: "LinkedIn",
     href: "https://linkedin.com/in/marcoopozo",
   },
+  {
+    icon: FaWhatsapp,
+    label: "WhatsApp",
+    href: "https://wa.me/593997750258",
+  },
 ];
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<SendStatus>("idle");
   const { ref: introRef, isVisible: introVisible } = useReveal<HTMLDivElement>();
   const { ref: formRef, isVisible: formVisible } = useReveal<HTMLFormElement>();
 
@@ -43,13 +53,23 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      `Contacto desde el portfolio - ${form.name}`,
-    );
-    const body = encodeURIComponent(`${form.message}\n\n${form.email}`);
-    window.location.href = `mailto:marco10011111@gmail.com?subject=${subject}&body=${body}`;
+    setStatus("sending");
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        { name: form.name, email: form.email, message: form.message },
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY },
+      );
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus("error");
+    }
   };
 
   return (
@@ -59,9 +79,7 @@ export default function Contact() {
           ref={introRef}
           className={`contact__intro reveal ${introVisible ? "is-visible" : ""}`}
         >
-          <span className="contact__badge">
-            <FiMessageCircle /> Contacto
-          </span>
+          <span className="eyebrow">Contacto</span>
           <h2 className="contact__title">
             Hablemos de tu próximo <span className="accent-text">proyecto</span>
           </h2>
@@ -145,15 +163,71 @@ export default function Contact() {
             />
           </div>
 
-          <Button
+          <motion.button
             type="submit"
-            variant="primary"
             className="contact__submit"
-            icon={<FiSend />}
-            iconPosition="left"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            disabled={status === "sending"}
           >
-            Enviar mensaje
-          </Button>
+            <span className="contact__submit-icon">
+              <AnimatePresence mode="popLayout" initial={false}>
+                {status === "sending" ? (
+                  <motion.span
+                    key="sending"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.5, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 600, damping: 25 }}
+                    className="contact__submit-icon-inner"
+                  >
+                    <FiLoader className="contact__submit-spinner" />
+                  </motion.span>
+                ) : status === "success" ? (
+                  <motion.span
+                    key="check"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.5, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 600, damping: 25 }}
+                    className="contact__submit-icon-inner"
+                  >
+                    <FiCheck />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="send"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.5, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 600, damping: 25 }}
+                    className="contact__submit-icon-inner"
+                  >
+                    <FiSend />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </span>
+            <span className="contact__submit-label">
+              {status === "sending"
+                ? "Enviando..."
+                : status === "success"
+                  ? "¡Enviado!"
+                  : "Enviar mensaje"}
+            </span>
+          </motion.button>
+
+          {status === "success" && (
+            <p className="contact__status contact__status--success">
+              <FiCheckCircle /> ¡Mensaje enviado! Te responderé pronto.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="contact__status contact__status--error">
+              Hubo un error al enviar. Intentá de nuevo o escribime directo a
+              marco10011111@gmail.com.
+            </p>
+          )}
         </form>
       </div>
     </section>

@@ -45,11 +45,8 @@
   gap: var(--space-xs);
   padding: var(--space-xl);
   border-radius: var(--radius-2xl);
-  border: var(--border-thin) solid rgba(255, 255, 255, 0.08);
-  background: var(--bg-card-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 10px 30px rgba(0, 0, 0, 0.35);
+  border: var(--border-thin) solid var(--border-subtle);
+  background: var(--bg-secondary);
 }
 
 .about__stat-top {

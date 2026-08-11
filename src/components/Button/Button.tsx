@@ -8,6 +8,7 @@ interface BaseButtonProps {
   className?: string;
   children: ReactNode;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 interface ButtonAsButton extends BaseButtonProps {
@@ -40,6 +41,7 @@ export function Button({
   className = "",
   children,
   onClick,
+  disabled,
   ...rest
 }: ButtonProps) {
   const classes = `btn btn--${variant} ${className}`.trim();
@@ -80,7 +82,12 @@ export function Button({
   }
 
   return (
-    <button type={rest.type ?? "button"} className={classes} onClick={onClick}>
+    <button
+      type={rest.type ?? "button"}
+      className={classes}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {content}
     </button>
   );

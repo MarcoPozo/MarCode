@@ -1,5 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import {
+  FiArrowUp,
+  FiArrowUpRight,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+} from "react-icons/fi";
 import { scrollToSection } from "../../lib/lenis";
 import "./Footer.css";
 
@@ -42,15 +48,17 @@ export default function Footer() {
         </div>
 
         <nav className="footer__nav">
-          <span className="footer__heading">Navegación</span>
+          <span className="footer__heading">(Navegación)</span>
           <ul>
             {quickLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={isHome ? `#${link.id}` : `/#${link.id}`}
                   onClick={(e) => handleLinkClick(e, link.id)}
+                  className="footer__nav-link"
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <FiArrowUpRight className="footer__nav-arrow" />
                 </a>
               </li>
             ))}
@@ -58,7 +66,11 @@ export default function Footer() {
         </nav>
 
         <div className="footer__connect">
-          <span className="footer__heading">Conectemos</span>
+          <span className="footer__heading">(Contacto)</span>
+          <a href="mailto:marco10011111@gmail.com" className="footer__connect-email">
+            marco10011111@gmail.com
+          </a>
+          <p className="footer__connect-location">Quito, Ecuador</p>
           <div className="footer__socials">
             {socials.map((social) => (
               <a
@@ -75,8 +87,24 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="footer__bottom">
-        <p>&copy; {new Date().getFullYear()} Marco Pozo. Todos los derechos reservados.</p>
+      <div className="container footer__bottom">
+        <p className="footer__copyright">
+          &copy; {new Date().getFullYear()} Marco Pozo. Todos los derechos
+          reservados.
+        </p>
+
+        <div className="footer__status">
+          <span className="footer__status-dot" />
+          Disponible para nuevos proyectos
+        </div>
+
+        <a
+          href={isHome ? "#hero" : "/#hero"}
+          onClick={(e) => handleLinkClick(e, "hero")}
+          className="footer__top"
+        >
+          Volver arriba <FiArrowUp />
+        </a>
       </div>
     </footer>
   );

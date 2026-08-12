@@ -24,7 +24,12 @@ const contactInfo = [
     label: "marco10011111@gmail.com",
     href: "mailto:marco10011111@gmail.com",
   },
-  { icon: FiMapPin, label: "Quito, Ecuador", href: undefined },
+  {
+    icon: FiMapPin,
+    label: "De Quito Papá",
+    href: undefined,
+    flag: "https://flagcdn.com/ec.svg",
+  },
 ];
 
 const socials = [
@@ -84,8 +89,8 @@ export default function Contact() {
             Hablemos de tu próximo <span className="accent-text">proyecto</span>
           </h2>
           <p className="contact__text">
-            ¿Tenés una idea, una oportunidad laboral o simplemente querés
-            saludar? Escribime, con gusto te respondo.
+            ¿Tienes una idea, una oportunidad laboral o simplemente quieres
+            saludar? Escríbeme, con gusto te respondo.
           </p>
 
           <ul className="contact__info">
@@ -94,10 +99,16 @@ export default function Contact() {
                 {item.href ? (
                   <a href={item.href} className="contact__info-link">
                     <item.icon /> {item.label}
+                    {"flag" in item && (
+                      <img src={item.flag} alt="" className="contact__info-flag" />
+                    )}
                   </a>
                 ) : (
                   <span className="contact__info-link">
                     <item.icon /> {item.label}
+                    {"flag" in item && (
+                      <img src={item.flag} alt="" className="contact__info-flag" />
+                    )}
                   </span>
                 )}
               </li>
@@ -156,7 +167,7 @@ export default function Contact() {
               id="message"
               name="message"
               rows={5}
-              placeholder="Contame en qué puedo ayudarte"
+              placeholder="Cuéntame en qué puedo ayudarte"
               value={form.message}
               onChange={handleChange}
               required
@@ -224,7 +235,7 @@ export default function Contact() {
           )}
           {status === "error" && (
             <p className="contact__status contact__status--error">
-              Hubo un error al enviar. Intentá de nuevo o escribime directo a
+              Hubo un error al enviar. Intenta de nuevo o escríbeme directo a
               marco10011111@gmail.com.
             </p>
           )}

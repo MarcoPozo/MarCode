@@ -43,6 +43,13 @@ a.contact__info-link:hover {
   color: var(--accent-text);
 }
 
+.contact__info-flag {
+  width: 18px;
+  height: 13px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
 .contact__socials {
   display: flex;
   gap: var(--space-lg);

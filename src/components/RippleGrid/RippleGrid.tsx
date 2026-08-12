@@ -6,7 +6,11 @@ const RADIUS_BASE = 1.3;
 const RADIUS_MAX = 4;
 const RIPPLE_RANGE = 160;
 
-export default function RippleGrid() {
+interface RippleGridProps {
+  color?: string;
+}
+
+export default function RippleGrid({ color }: RippleGridProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -20,7 +24,8 @@ export default function RippleGrid() {
     ).matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const style = getComputedStyle(document.documentElement);
-    const accent = style.getPropertyValue("--accent-text").trim() || "#e74c3c";
+    const accent =
+      color || style.getPropertyValue("--accent-text").trim() || "#e74c3c";
 
     let width = 0;
     let height = 0;
@@ -64,8 +69,11 @@ export default function RippleGrid() {
     };
 
     const resize = () => {
-      width = parent.clientWidth;
-      height = parent.clientHeight;
+      const nextWidth = parent.clientWidth;
+      const nextHeight = parent.clientHeight;
+      if (nextWidth === 0 || nextHeight === 0) return;
+      width = nextWidth;
+      height = nextHeight;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
@@ -74,7 +82,9 @@ export default function RippleGrid() {
       draw();
     };
     resize();
-    window.addEventListener("resize", resize);
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(parent);
     parent.addEventListener("mousemove", handleMouseMove);
     parent.addEventListener("mouseleave", handleMouseLeave);
 
@@ -90,12 +100,12 @@ export default function RippleGrid() {
     }
 
     return () => {
-      window.removeEventListener("resize", resize);
+      resizeObserver.disconnect();
       parent.removeEventListener("mousemove", handleMouseMove);
       parent.removeEventListener("mouseleave", handleMouseLeave);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [color]);
 
   return <canvas ref={canvasRef} className="ripple-grid" aria-hidden="true" />;
 }

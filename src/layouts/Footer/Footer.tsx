@@ -1,12 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import {
-  FiArrowUp,
-  FiArrowUpRight,
-  FiGithub,
-  FiLinkedin,
-  FiMail,
-} from "react-icons/fi";
+import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { scrollToSection } from "../../lib/lenis";
+import ShaderNoise from "../../components/ShaderNoise/ShaderNoise";
 import "./Footer.css";
 
 const quickLinks = [
@@ -36,6 +31,8 @@ export default function Footer() {
 
   return (
     <footer className="footer">
+      <ShaderNoise extendBehindNavbar={false} accentColor="#3a3a3f" />
+
       <div className="container footer__grid">
         <div className="footer__brand">
           <Link to="/" className="footer__logo">
@@ -48,7 +45,6 @@ export default function Footer() {
         </div>
 
         <nav className="footer__nav">
-          <span className="footer__heading">(Navegación)</span>
           <ul>
             {quickLinks.map((link) => (
               <li key={link.id}>
@@ -66,7 +62,6 @@ export default function Footer() {
         </nav>
 
         <div className="footer__connect">
-          <span className="footer__heading">(Contacto)</span>
           <a href="mailto:marco10011111@gmail.com" className="footer__connect-email">
             marco10011111@gmail.com
           </a>
@@ -92,19 +87,6 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Marco Pozo. Todos los derechos
           reservados.
         </p>
-
-        <div className="footer__status">
-          <span className="footer__status-dot" />
-          Disponible para nuevos proyectos
-        </div>
-
-        <a
-          href={isHome ? "#hero" : "/#hero"}
-          onClick={(e) => handleLinkClick(e, "hero")}
-          className="footer__top"
-        >
-          Volver arriba <FiArrowUp />
-        </a>
       </div>
     </footer>
   );

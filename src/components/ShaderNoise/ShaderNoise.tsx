@@ -86,7 +86,15 @@ function compileShader(gl: WebGLRenderingContext, type: number, src: string) {
   return shader;
 }
 
-export default function ShaderNoise() {
+interface ShaderNoiseProps {
+  extendBehindNavbar?: boolean;
+  accentColor?: string;
+}
+
+export default function ShaderNoise({
+  extendBehindNavbar = true,
+  accentColor,
+}: ShaderNoiseProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -103,7 +111,9 @@ export default function ShaderNoise() {
     ).matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const style = getComputedStyle(document.documentElement);
-    const accent = hexToVec3(style.getPropertyValue("--accent-text").trim() || "#e74c3c");
+    const accent = hexToVec3(
+      accentColor || style.getPropertyValue("--accent-text").trim() || "#e74c3c",
+    );
     const bg = hexToVec3(style.getPropertyValue("--bg-primary").trim() || "#0a0a0b");
 
     const vertexShader = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SRC);
@@ -142,10 +152,14 @@ export default function ShaderNoise() {
     const resize = () => {
       // Extend the canvas up behind the fixed navbar (`.hero` starts right
       // below it) so the glass navbar blurs the shader instead of empty bg.
-      const navbarHeight =
-        document.querySelector<HTMLElement>(".navbar")?.offsetHeight ?? 0;
-      width = parent.clientWidth;
-      height = parent.clientHeight + navbarHeight;
+      const navbarHeight = extendBehindNavbar
+        ? (document.querySelector<HTMLElement>(".navbar")?.offsetHeight ?? 0)
+        : 0;
+      const nextWidth = parent.clientWidth;
+      const nextHeight = parent.clientHeight + navbarHeight;
+      if (nextWidth === 0 || nextHeight === 0) return;
+      width = nextWidth;
+      height = nextHeight;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
@@ -155,7 +169,9 @@ export default function ShaderNoise() {
       gl.uniform2f(uResolution, canvas.width, canvas.height);
     };
     resize();
-    window.addEventListener("resize", resize);
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(parent);
 
     const render = (time: number) => {
       gl.uniform1f(uTime, time * 0.001);
@@ -175,14 +191,14 @@ export default function ShaderNoise() {
     }
 
     return () => {
-      window.removeEventListener("resize", resize);
+      resizeObserver.disconnect();
       if (rafId) cancelAnimationFrame(rafId);
       gl.deleteProgram(program);
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);
       gl.deleteBuffer(positionBuffer);
     };
-  }, []);
+  }, [extendBehindNavbar, accentColor]);
 
   return <canvas ref={canvasRef} className="shader-noise" aria-hidden="true" />;
 }

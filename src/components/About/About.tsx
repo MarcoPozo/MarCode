@@ -1,6 +1,7 @@
 import { FiCalendar, FiCheckCircle, FiUsers } from "react-icons/fi";
 import { useReveal } from "../../hooks/useReveal";
 import ScrollRevealText from "../ScrollRevealText/ScrollRevealText";
+import SectionHeading from "../SectionHeading/SectionHeading";
 import "./About.css";
 
 const stats = [
@@ -10,22 +11,21 @@ const stats = [
 ];
 
 export default function About() {
-  const { ref: introRef, isVisible: introVisible } = useReveal<HTMLDivElement>();
   const { ref: statsRef, isVisible: statsVisible } = useReveal<HTMLDivElement>();
 
   return (
     <section id="about" className="section-view about">
       <div className="container about__grid">
-        <div
-          ref={introRef}
-          className={`about__intro reveal ${introVisible ? "is-visible" : ""}`}
-        >
-          <span className="eyebrow">Sobre mí</span>
-
-          <h2 className="about__title">
-            Convierto ideas en productos digitales{" "}
-            <span className="accent-text">reales</span>
-          </h2>
+        <div className="about__intro">
+          <SectionHeading
+            eyebrow="Sobre mí"
+            title={
+              <>
+                Convierto ideas en productos digitales{" "}
+                <span className="text-gradient-shimmer">reales</span>
+              </>
+            }
+          />
 
           <ScrollRevealText
             className="about__text"

@@ -14,6 +14,7 @@ import {
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useReveal } from "../../hooks/useReveal";
+import SectionHeading from "../SectionHeading/SectionHeading";
 import "./Contact.css";
 
 type SendStatus = "idle" | "sending" | "success" | "error";
@@ -49,7 +50,8 @@ const socials = [
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<SendStatus>("idle");
-  const { ref: introRef, isVisible: introVisible } = useReveal<HTMLDivElement>();
+  const { ref: introBodyRef, isVisible: introBodyVisible } =
+    useReveal<HTMLDivElement>();
   const { ref: formRef, isVisible: formVisible } = useReveal<HTMLFormElement>();
 
   const handleChange = (
@@ -80,52 +82,71 @@ export default function Contact() {
   return (
     <section id="contact" className="section-view contact">
       <div className="container contact__grid">
-        <div
-          ref={introRef}
-          className={`contact__intro reveal ${introVisible ? "is-visible" : ""}`}
-        >
-          <span className="eyebrow">Contacto</span>
-          <h2 className="contact__title">
-            Hablemos de tu próximo <span className="accent-text">proyecto</span>
-          </h2>
-          <p className="contact__text">
-            ¿Tienes una idea, una oportunidad laboral o simplemente quieres
-            saludar? Escríbeme, con gusto te respondo.
-          </p>
+        <div className="contact__intro">
+          <SectionHeading
+            eyebrow="Contacto"
+            title={
+              <>
+                Hablemos de tu próximo{" "}
+                <span className="text-gradient-shimmer">proyecto</span>
+              </>
+            }
+          />
 
-          <ul className="contact__info">
-            {contactInfo.map((item) => (
-              <li key={item.label}>
-                {item.href ? (
-                  <a href={item.href} className="contact__info-link">
-                    <item.icon /> {item.label}
-                    {"flag" in item && (
-                      <img src={item.flag} alt="" className="contact__info-flag" />
-                    )}
-                  </a>
-                ) : (
-                  <span className="contact__info-link">
-                    <item.icon /> {item.label}
-                    {"flag" in item && (
-                      <img src={item.flag} alt="" className="contact__info-flag" />
-                    )}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
+          <div
+            ref={introBodyRef}
+            className={`contact__intro-body reveal ${
+              introBodyVisible ? "is-visible" : ""
+            }`}
+            style={{ transitionDelay: "100ms" }}
+          >
+            <p className="contact__text">
+              ¿Tienes una idea, una oportunidad laboral o simplemente quieres
+              saludar? Escríbeme, con gusto te respondo.
+            </p>
 
-          <div className="contact__socials">
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={social.label}>
-                <social.icon />
-              </a>
-            ))}
+            <ul className="contact__info">
+              {contactInfo.map((item) => (
+                <li key={item.label}>
+                  {item.href ? (
+                    <a href={item.href} className="contact__info-link">
+                      <item.icon /> {item.label}
+                      {"flag" in item && (
+                        <img
+                          src={item.flag}
+                          alt=""
+                          className="contact__info-flag"
+                        />
+                      )}
+                    </a>
+                  ) : (
+                    <span className="contact__info-link">
+                      <item.icon /> {item.label}
+                      {"flag" in item && (
+                        <img
+                          src={item.flag}
+                          alt=""
+                          className="contact__info-flag"
+                        />
+                      )}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+            <div className="contact__socials">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.label}>
+                  <social.icon />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 

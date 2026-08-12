@@ -1,5 +1,6 @@
 import { useReveal } from "../../hooks/useReveal";
 import DashedGrid from "../DashedGrid/DashedGrid";
+import SectionHeading from "../SectionHeading/SectionHeading";
 import "./Skills.css";
 
 const skillGroups = [
@@ -91,22 +92,19 @@ function CategoryBlock({
 }
 
 export default function Skills() {
-  const { ref: headerRef, isVisible: headerVisible } = useReveal<HTMLDivElement>();
-
   return (
     <section id="skills" className="section-view skills">
       <DashedGrid />
       <div className="container">
-        <div
-          ref={headerRef}
-          className={`skills__header reveal ${headerVisible ? "is-visible" : ""}`}
-        >
-          <span className="eyebrow">Skills</span>
-          <h2 className="skills__title">
-            Tecnologías con las que{" "}
-            <span className="accent-text">trabajo</span>
-          </h2>
-        </div>
+        <SectionHeading
+          eyebrow="Habilidades"
+          title={
+            <>
+              Tecnologías con las que{" "}
+              <span className="text-gradient-shimmer">trabajo</span>
+            </>
+          }
+        />
 
         <div className="skills__categories">
           {skillGroups.map((group, index) => (

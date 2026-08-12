@@ -5,11 +5,11 @@ import ShaderNoise from "../../components/ShaderNoise/ShaderNoise";
 import "./Footer.css";
 
 const quickLinks = [
-  { label: "Home", id: "hero" },
-  { label: "About", id: "about" },
-  { label: "Skills", id: "skills" },
-  { label: "Projects", id: "projects" },
-  { label: "Contact", id: "contact" },
+  { label: "Inicio", id: "hero" },
+  { label: "Sobre mí", id: "about" },
+  { label: "Habilidades", id: "skills" },
+  { label: "Proyectos", id: "projects" },
+  { label: "Contacto", id: "contact" },
 ];
 
 const socials = [
@@ -35,8 +35,8 @@ export default function Footer() {
 
       <div className="container footer__grid">
         <div className="footer__brand">
-          <Link to="/" className="footer__logo">
-            MarCode
+          <Link to="/" className="footer__logo" aria-label="MarCode">
+            <img src="/logo/logo.svg" alt="MarCode" className="footer__logo-img" />
           </Link>
           <p className="footer__tagline">
             Full Stack Developer construyendo experiencias digitales con

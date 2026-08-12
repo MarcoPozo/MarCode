@@ -6,11 +6,11 @@ import { scrollToSection } from "../../lib/lenis";
 import "./Navbar.css";
 
 const navLinks = [
-  { label: "Home", id: "hero" },
-  { label: "About", id: "about" },
-  { label: "Skills", id: "skills" },
-  { label: "Projects", id: "projects" },
-  { label: "Contact", id: "contact" },
+  { label: "Inicio", id: "hero" },
+  { label: "Sobre mí", id: "about" },
+  { label: "Habilidades", id: "skills" },
+  { label: "Proyectos", id: "projects" },
+  { label: "Contacto", id: "contact" },
 ];
 
 export default function Navbar() {
@@ -30,8 +30,8 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar__container">
-        <Link to="/" className="navbar__brand">
-          MarCode
+        <Link to="/" className="navbar__brand" aria-label="MarCode">
+          <img src="/logo/logo.svg" alt="MarCode" className="navbar__brand-logo" />
         </Link>
 
         <button

@@ -22,10 +22,14 @@
 }
 
 .navbar__brand {
-  font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: var(--weight-regular);
-  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar__brand-logo {
+  height: 34px;
+  width: auto;
+  display: block;
 }
 
 .navbar__toggle {

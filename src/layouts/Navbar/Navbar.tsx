@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
+import { FiDownload } from "react-icons/fi";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import { scrollToSection } from "../../lib/lenis";
 import "./Navbar.css";
+
+type Lang = "es" | "en";
 
 const navLinks = [
   { label: "Inicio", id: "hero" },
@@ -15,6 +18,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [lang, setLang] = useState<Lang>("es");
   const { pathname } = useLocation();
   const isHome = pathname === "/";
   const activeId = useActiveSection(navLinks.map((link) => link.id));
@@ -55,6 +59,35 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+
+          <li className="navbar__divider" aria-hidden="true">
+            |
+          </li>
+
+          <li>
+            <button
+              type="button"
+              className="navbar__lang-toggle"
+              onClick={() => setLang((prev) => (prev === "es" ? "en" : "es"))}
+              aria-label="Cambiar idioma"
+            >
+              {lang.toUpperCase()}
+            </button>
+          </li>
+
+          <li className="navbar__divider" aria-hidden="true">
+            |
+          </li>
+
+          <li>
+            <a
+              href={lang === "es" ? "/cv/cv-es.pdf" : "/cv/cv-en.pdf"}
+              download
+              className="navbar__cv-link"
+            >
+              <FiDownload /> CV
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

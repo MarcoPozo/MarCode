@@ -18,6 +18,13 @@
   background: linear-gradient(90deg, rgba(231, 76, 60, 0.7) 0%, transparent 100%);
 }
 
+.section-heading__description {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin-top: var(--space-xs);
+}
+
 @media (max-width: 900px) {
   .section-heading {
     align-items: center;

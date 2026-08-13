@@ -3,6 +3,7 @@ import { projects } from "../../data/projects";
 import ProjectCard from "../../components/Projects/ProjectCard";
 import DashedGrid from "../../components/DashedGrid/DashedGrid";
 import { MagneticRouterLink } from "../../components/Magnetic/MagneticRouterLink";
+import SectionHeading from "../../components/SectionHeading/SectionHeading";
 import "./ProjectsPage.css";
 
 export default function ProjectsPage() {
@@ -16,14 +17,17 @@ export default function ProjectsPage() {
           <FiArrowLeft /> Volver al inicio
         </MagneticRouterLink>
 
-        <div className="projects-page__header">
-          <span className="eyebrow">Proyectos</span>
-          <h1 className="projects-page__title">Todos los proyectos</h1>
-          <p className="projects-page__subtitle">
-            Un repaso completo por los proyectos institucionales y freelance
-            en los que he trabajado.
-          </p>
-        </div>
+        <SectionHeading
+          as="h1"
+          eyebrow="Proyectos"
+          title={
+            <>
+              Todos los{" "}
+              <span className="text-gradient-shimmer">proyectos</span>
+            </>
+          }
+          description="Un repaso completo por los proyectos institucionales y freelance en los que he trabajado."
+        />
 
         <div className="projects-page__grid">
           {projectsWithImages.map((project, index) => (

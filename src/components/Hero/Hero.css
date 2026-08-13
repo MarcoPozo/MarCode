@@ -28,12 +28,14 @@
 
 .hero__name-base {
   display: block;
+  white-space: nowrap;
 }
 
 .hero__name-glow {
   display: block;
   position: absolute;
   inset: 0;
+  white-space: nowrap;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s ease;

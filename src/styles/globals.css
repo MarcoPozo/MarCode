@@ -384,3 +384,27 @@ img {
     --section-padding-x: var(--space-md);
   }
 }
+
+/* Large/wide monitors — most spacing and type already lives in rem, so
+   bumping the root font-size scales the whole site proportionally instead
+   of the fixed-width container just floating small in a sea of empty
+   margin. */
+@media (min-width: 1600px) {
+  html {
+    font-size: 112.5%;
+  }
+
+  :root {
+    --container-max-width: 1400px;
+  }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 125%;
+  }
+
+  :root {
+    --container-max-width: 1560px;
+  }
+}

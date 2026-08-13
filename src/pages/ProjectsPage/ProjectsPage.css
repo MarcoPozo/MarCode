@@ -21,36 +21,14 @@
   color: var(--accent-text);
 }
 
-.projects-page__header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-md);
-  margin-bottom: var(--space-3xl);
-}
-
-.projects-page__title {
-  font-size: var(--text-5xl);
-}
-
-.projects-page__subtitle {
-  font-size: var(--text-lg);
-  color: var(--text-secondary);
-  max-width: 620px;
-}
-
 .projects-page__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
+  margin-top: var(--space-3xl);
 }
 
 @media (max-width: 900px) {
-  .projects-page__header {
-    align-items: center;
-    text-align: center;
-  }
-
   .projects-page__grid {
     grid-template-columns: repeat(2, 1fr);
   }

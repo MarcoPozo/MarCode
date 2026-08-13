@@ -1,5 +1,6 @@
-.projects-page {
+section.projects-page {
   position: relative;
+  padding-top: var(--space-3xl);
 }
 
 .projects-page > .container {

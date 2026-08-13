@@ -39,7 +39,7 @@
   flex-direction: column;
   gap: var(--space-xs);
   padding: var(--space-xl);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-md);
   border: var(--border-thin) solid var(--border-subtle);
   background: var(--bg-secondary);
 }
@@ -60,7 +60,7 @@
   font-size: clamp(2.25rem, 3.5vw, 3rem);
   font-weight: var(--weight-regular);
   color: var(--text-primary);
-  line-height: 1;
+  line-height: var(--leading-none);
 }
 
 .about__stat-label {

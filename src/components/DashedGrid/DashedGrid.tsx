@@ -3,7 +3,10 @@ import "./DashedGrid.css";
 
 // A tileable 60x60 mask: a 1px dashed line along the tile's top edge and one
 // along its left edge. Repeated, adjacent tiles' edges combine into a full
-// dashed grid — cheaper than drawing every line by hand.
+// dashed grid — cheaper than drawing every line by hand. `fill="#fff"` here
+// is opaque-for-the-mask, not a paint color — this SVG is embedded as a data
+// URI, an isolated document that can't inherit CSS custom properties from
+// the page, so it can't reference var(--white-rgb) like everything else.
 const GRID_SVG =
   '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" shape-rendering="crispEdges">' +
   '<defs>' +

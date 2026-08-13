@@ -50,7 +50,7 @@ a.contact__info-link:hover {
   width: 18px;
   height: 13px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
 }
 
 .contact__socials {
@@ -136,7 +136,7 @@ a.contact__info-link:hover {
 }
 
 .contact__status--success {
-  color: #4caf87;
+  color: var(--color-success);
 }
 
 .contact__status--error {

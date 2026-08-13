@@ -88,6 +88,8 @@ function compileShader(gl: WebGLRenderingContext, type: number, src: string) {
 
 interface ShaderNoiseProps {
   extendBehindNavbar?: boolean;
+  /** Name of a CSS custom property to read the glow color from (e.g.
+   *  "--glow-muted"). Falls back to --accent-text when omitted. */
   accentColor?: string;
 }
 
@@ -112,7 +114,9 @@ export default function ShaderNoise({
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const style = getComputedStyle(document.documentElement);
     const accent = hexToVec3(
-      accentColor || style.getPropertyValue("--accent-text").trim() || "#e74c3c",
+      (accentColor && style.getPropertyValue(accentColor).trim()) ||
+        style.getPropertyValue("--accent-text").trim() ||
+        "#e74c3c",
     );
     const bg = hexToVec3(style.getPropertyValue("--bg-primary").trim() || "#0a0a0b");
 

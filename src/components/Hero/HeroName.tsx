@@ -25,7 +25,7 @@ export default function HeroName() {
 
     const applyMask = () => {
       rafId = 0;
-      const mask = `radial-gradient(${radius}px at ${lastX}px ${lastY}px, #000 0%, #000 30%, transparent 72%)`;
+      const mask = `radial-gradient(${radius}px at ${lastX}px ${lastY}px, rgb(var(--black-rgb)) 0%, rgb(var(--black-rgb)) 30%, transparent 72%)`;
       glow.style.maskImage = mask;
       glow.style.webkitMaskImage = mask;
     };

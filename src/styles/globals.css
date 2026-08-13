@@ -47,26 +47,36 @@
   --container-max-width: 1200px;
   --container-narrow: 800px;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 24px;
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
   --radius-full: 9999px;
 
   --border-thin: 1px;
   --border-medium: 2px;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-accent: 0 4px 20px rgba(192, 57, 43, 0.3);
+  /* Raw R,G,B triplets — for components that need a custom alpha via
+     rgba(var(--x-rgb), N) instead of a fixed token. Keeps every "white",
+     "black" and "accent" alpha blend derived from the same three source
+     colors instead of hand-typed one-offs scattered per component. */
+  --black-rgb: 0, 0, 0;
+  --white-rgb: 255, 255, 255;
+  --accent-rgb: 192, 57, 43;
+
+  --shadow-sm: 0 1px 2px rgba(var(--black-rgb), 0.3);
+  --shadow-md: 0 4px 12px rgba(var(--black-rgb), 0.4);
+  --shadow-lg: 0 8px 24px rgba(var(--black-rgb), 0.5);
+  --shadow-accent: 0 4px 20px rgba(var(--accent-rgb), 0.3);
 
   --transition-fast: 150ms ease;
   --transition-base: 300ms ease;
   --transition-slow: 500ms ease;
 
   --z-base: 0;
+  --z-raised: 1;
   --z-dropdown: 100;
   --z-sticky: 200;
   --z-overlay: 300;
@@ -94,19 +104,22 @@
 
   --accent: #c0392b;
   --accent-hover: #e74c3c;
-  --accent-subtle: rgba(192, 57, 43, 0.15);
+  --accent-subtle: rgba(var(--accent-rgb), 0.15);
   --accent-text: #e74c3c;
 
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.2);
+  --color-success: #4caf87;
+  --glow-muted: #3a3a3f;
+
+  --border-subtle: rgba(var(--white-rgb), 0.06);
+  --border-default: rgba(var(--white-rgb), 0.12);
+  --border-strong: rgba(var(--white-rgb), 0.2);
   --border-accent: var(--accent);
 
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --overlay: rgba(0, 0, 0, 0.6);
+  --shadow-color: rgba(var(--black-rgb), 0.5);
+  --overlay: rgba(var(--black-rgb), 0.6);
   --scrollbar-thumb: #333;
   --scrollbar-track: #111;
-  --selection-bg: rgba(192, 57, 43, 0.3);
+  --selection-bg: rgba(var(--accent-rgb), 0.3);
   --selection-text: #f5f5f5;
 }
 
@@ -125,19 +138,22 @@
 
   --accent: #c0392b;
   --accent-hover: #a93226;
-  --accent-subtle: rgba(192, 57, 43, 0.08);
+  --accent-subtle: rgba(var(--accent-rgb), 0.08);
   --accent-text: #a93226;
 
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-default: rgba(0, 0, 0, 0.12);
-  --border-strong: rgba(0, 0, 0, 0.2);
+  --color-success: #2f9e6d;
+  --glow-muted: #3a3a3f;
+
+  --border-subtle: rgba(var(--black-rgb), 0.06);
+  --border-default: rgba(var(--black-rgb), 0.12);
+  --border-strong: rgba(var(--black-rgb), 0.2);
   --border-accent: var(--accent);
 
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --overlay: rgba(0, 0, 0, 0.4);
+  --shadow-color: rgba(var(--black-rgb), 0.1);
+  --overlay: rgba(var(--black-rgb), 0.4);
   --scrollbar-thumb: #ccc;
   --scrollbar-track: #f0f0f0;
-  --selection-bg: rgba(192, 57, 43, 0.2);
+  --selection-bg: rgba(var(--accent-rgb), 0.2);
   --selection-text: #111113;
 }
 
@@ -264,7 +280,7 @@ img {
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
 }
 
 .reveal.is-visible {
@@ -291,7 +307,7 @@ img {
       100deg,
       transparent 0%,
       transparent 55%,
-      rgba(255, 255, 255, 0.5) 75%,
+      rgba(var(--white-rgb), 0.5) 75%,
       transparent 95%,
       transparent 100%
     ),

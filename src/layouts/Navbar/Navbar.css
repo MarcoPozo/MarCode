@@ -63,7 +63,7 @@
   left: 0;
   bottom: -4px;
   width: 0;
-  height: 2px;
+  height: var(--border-medium);
   background-color: var(--accent);
   transition: width var(--transition-base);
 }
@@ -106,7 +106,7 @@
   width: 18px;
   height: 13px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
   opacity: 0.45;
   transition: opacity var(--transition-fast);
 }

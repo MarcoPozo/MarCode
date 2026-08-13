@@ -15,7 +15,7 @@
   width: 120px;
   height: 1px;
   margin-top: var(--space-sm);
-  background: linear-gradient(90deg, rgba(231, 76, 60, 0.7) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.7) 0%, transparent 100%);
 }
 
 .section-heading__description {

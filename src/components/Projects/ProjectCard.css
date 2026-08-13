@@ -19,7 +19,7 @@
 }
 
 .project-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--border-strong);
   transform: translateY(-4px);
 }
 
@@ -73,11 +73,12 @@
 
 .project-card__description {
   font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(var(--white-rgb), 0.75);
   line-height: var(--leading-normal);
   height: calc(var(--leading-normal) * 3em);
   overflow: hidden;
   display: -webkit-box;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
@@ -110,7 +111,7 @@
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
   color: var(--text-primary);
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(var(--white-rgb), 0.08);
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-sm);
 }

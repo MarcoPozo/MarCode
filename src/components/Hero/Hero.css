@@ -4,7 +4,7 @@
 
 .hero__grid {
   position: relative;
-  z-index: 1;
+  z-index: var(--z-raised);
 }
 
 .hero__content {
@@ -38,9 +38,9 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.2s ease;
-  -webkit-mask-image: radial-gradient(0px at 0px 0px, #000 0%, transparent 72%);
-  mask-image: radial-gradient(0px at 0px 0px, #000 0%, transparent 72%);
+  transition: opacity var(--transition-fast);
+  -webkit-mask-image: radial-gradient(0px at 0px 0px, rgb(var(--black-rgb)) 0%, transparent 72%);
+  mask-image: radial-gradient(0px at 0px 0px, rgb(var(--black-rgb)) 0%, transparent 72%);
 }
 
 .hero__description {

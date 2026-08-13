@@ -31,7 +31,7 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <ShaderNoise extendBehindNavbar={false} accentColor="#3a3a3f" />
+      <ShaderNoise extendBehindNavbar={false} accentColor="--glow-muted" />
 
       <div className="container footer__grid">
         <div className="footer__brand">

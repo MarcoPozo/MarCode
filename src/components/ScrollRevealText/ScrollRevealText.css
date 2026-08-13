@@ -1,7 +1,7 @@
 .reveal-char {
   color: var(--text-muted);
   opacity: 0.5;
-  transition: color 0.3s ease, opacity 0.3s ease;
+  transition: color var(--transition-base), opacity var(--transition-base);
 }
 
 .reveal-char.is-lit {

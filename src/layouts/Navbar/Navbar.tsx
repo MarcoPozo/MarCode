@@ -4,26 +4,19 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { FiDownload, FiMoon, FiSun } from "react-icons/fi";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import { scrollToSection } from "../../lib/lenis";
+import { useLanguage } from "../../context/language-context";
+import { navSections } from "../../data/navigation";
 import "./Navbar.css";
 
-type Lang = "es" | "en";
 type Theme = "dark" | "light";
-
-const navLinks = [
-  { label: "Inicio", id: "hero" },
-  { label: "Sobre mí", id: "about" },
-  { label: "Habilidades", id: "skills" },
-  { label: "Proyectos", id: "projects" },
-  { label: "Contacto", id: "contact" },
-];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [lang, setLang] = useState<Lang>("es");
   const [theme, setTheme] = useState<Theme>("dark");
+  const { lang, toggleLang, t } = useLanguage();
   const { pathname } = useLocation();
   const isHome = pathname === "/";
-  const activeId = useActiveSection(navLinks.map((link) => link.id));
+  const activeId = useActiveSection(navSections.map((link) => link.id));
 
   const handleLinkClick = (e: React.MouseEvent, id: string) => {
     if (isHome) {
@@ -49,7 +42,7 @@ export default function Navbar() {
         </button>
 
         <ul className={`navbar__links ${isOpen ? "navbar__links--open" : ""}`}>
-          {navLinks.map((link) => (
+          {navSections.map((link) => (
             <li key={link.id}>
               <a
                 href={isHome ? `#${link.id}` : `/#${link.id}`}
@@ -57,7 +50,7 @@ export default function Navbar() {
                   isHome && activeId === link.id ? "navbar__link--active" : ""
                 }`}
                 onClick={(e) => handleLinkClick(e, link.id)}>
-                {link.label}
+                {t.nav[link.key]}
               </a>
             </li>
           ))}
@@ -70,8 +63,8 @@ export default function Navbar() {
             <button
               type="button"
               className="navbar__lang-toggle"
-              onClick={() => setLang((prev) => (prev === "es" ? "en" : "es"))}
-              aria-label="Cambiar idioma"
+              onClick={toggleLang}
+              aria-label={t.langToggle.ariaLabel}
             >
               <img
                 src="https://flagcdn.com/us.svg"
@@ -100,7 +93,7 @@ export default function Navbar() {
               type="button"
               className="navbar__theme-toggle"
               onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
-              aria-label="Cambiar tema"
+              aria-label={t.themeToggle.ariaLabel}
             >
               <FiSun
                 className={`navbar__theme-icon ${

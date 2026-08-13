@@ -1,16 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { scrollToSection } from "../../lib/lenis";
+import { useLanguage } from "../../context/language-context";
+import { navSections } from "../../data/navigation";
 import ShaderNoise from "../../components/ShaderNoise/ShaderNoise";
 import "./Footer.css";
-
-const quickLinks = [
-  { label: "Inicio", id: "hero" },
-  { label: "Sobre mí", id: "about" },
-  { label: "Habilidades", id: "skills" },
-  { label: "Proyectos", id: "projects" },
-  { label: "Contacto", id: "contact" },
-];
 
 const socials = [
   { icon: FiGithub, label: "GitHub", href: "https://github.com/MarcoPozo" },
@@ -21,6 +15,7 @@ const socials = [
 export default function Footer() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+  const { t } = useLanguage();
 
   const handleLinkClick = (e: React.MouseEvent, id: string) => {
     if (isHome) {
@@ -38,22 +33,19 @@ export default function Footer() {
           <Link to="/" className="footer__logo" aria-label="MarCode">
             <img src="/logo/logo.svg" alt="MarCode" className="footer__logo-img" />
           </Link>
-          <p className="footer__tagline">
-            Full Stack Developer construyendo experiencias digitales con
-            propósito.
-          </p>
+          <p className="footer__tagline">{t.footer.tagline}</p>
         </div>
 
         <nav className="footer__nav">
           <ul>
-            {quickLinks.map((link) => (
+            {navSections.map((link) => (
               <li key={link.id}>
                 <a
                   href={isHome ? `#${link.id}` : `/#${link.id}`}
                   onClick={(e) => handleLinkClick(e, link.id)}
                   className="footer__nav-link"
                 >
-                  <span>{link.label}</span>
+                  <span>{t.nav[link.key]}</span>
                   <FiArrowUpRight className="footer__nav-arrow" />
                 </a>
               </li>
@@ -65,7 +57,7 @@ export default function Footer() {
           <a href="mailto:marco10011111@gmail.com" className="footer__connect-email">
             marco10011111@gmail.com
           </a>
-          <p className="footer__connect-location">Quito, Ecuador</p>
+          <p className="footer__connect-location">{t.footer.location}</p>
           <div className="footer__socials">
             {socials.map((social) => (
               <a
@@ -83,10 +75,7 @@ export default function Footer() {
       </div>
 
       <div className="container footer__bottom">
-        <p className="footer__copyright">
-          &copy; {new Date().getFullYear()} Marco Pozo. Todos los derechos
-          reservados.
-        </p>
+        <p className="footer__copyright">{t.footer.copyright(new Date().getFullYear())}</p>
       </div>
     </footer>
   );

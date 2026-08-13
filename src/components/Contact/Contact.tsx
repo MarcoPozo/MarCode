@@ -12,25 +12,27 @@ import {
   FiSend,
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
+import type { IconType } from "react-icons";
 import { useReveal } from "../../hooks/useReveal";
+import { useLanguage } from "../../context/language-context";
 import { Button } from "../Button/Button";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import "./Contact.css";
 
 type SendStatus = "idle" | "sending" | "success" | "error";
 
-const contactInfo = [
-  {
-    icon: FiMail,
-    label: "marco10011111@gmail.com",
-    href: "mailto:marco10011111@gmail.com",
-  },
-  {
-    icon: FiMapPin,
-    label: "De Quito Papá",
-    href: undefined,
-    flag: "https://flagcdn.com/ec.svg",
-  },
+const EMAIL = "marco10011111@gmail.com";
+
+interface ContactInfoItem {
+  id: "email" | "location";
+  icon: IconType;
+  href?: string;
+  flag?: string;
+}
+
+const contactInfo: ContactInfoItem[] = [
+  { id: "email", icon: FiMail, href: `mailto:${EMAIL}` },
+  { id: "location", icon: FiMapPin, flag: "https://flagcdn.com/ec.svg" },
 ];
 
 const socials = [
@@ -53,6 +55,7 @@ export default function Contact() {
   const { ref: introBodyRef, isVisible: introBodyVisible } =
     useReveal<HTMLDivElement>();
   const { ref: formRef, isVisible: formVisible } = useReveal<HTMLFormElement>();
+  const { t } = useLanguage();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -84,11 +87,11 @@ export default function Contact() {
       <div className="container contact__grid">
         <div className="contact__intro">
           <SectionHeading
-            eyebrow="Contacto"
+            eyebrow={t.contact.eyebrow}
             title={
               <>
-                Hablemos de tu próximo{" "}
-                <span className="text-gradient-shimmer">proyecto</span>
+                {t.contact.titlePrefix}
+                <span className="text-gradient-shimmer">{t.contact.titleHighlight}</span>
               </>
             }
           />
@@ -100,39 +103,39 @@ export default function Contact() {
             }`}
             style={{ transitionDelay: "100ms" }}
           >
-            <p className="contact__text">
-              ¿Tienes una idea, una oportunidad laboral o simplemente quieres
-              saludar? Escríbeme, con gusto te respondo.
-            </p>
+            <p className="contact__text">{t.contact.text}</p>
 
             <ul className="contact__info">
-              {contactInfo.map((item) => (
-                <li key={item.label}>
-                  {item.href ? (
-                    <a href={item.href} className="contact__info-link">
-                      <item.icon /> {item.label}
-                      {"flag" in item && (
-                        <img
-                          src={item.flag}
-                          alt=""
-                          className="contact__info-flag"
-                        />
-                      )}
-                    </a>
-                  ) : (
-                    <span className="contact__info-link">
-                      <item.icon /> {item.label}
-                      {"flag" in item && (
-                        <img
-                          src={item.flag}
-                          alt=""
-                          className="contact__info-flag"
-                        />
-                      )}
-                    </span>
-                  )}
-                </li>
-              ))}
+              {contactInfo.map((item) => {
+                const label = item.id === "email" ? EMAIL : t.contact.location;
+                return (
+                  <li key={item.id}>
+                    {item.href ? (
+                      <a href={item.href} className="contact__info-link">
+                        <item.icon /> {label}
+                        {item.flag && (
+                          <img
+                            src={item.flag}
+                            alt=""
+                            className="contact__info-flag"
+                          />
+                        )}
+                      </a>
+                    ) : (
+                      <span className="contact__info-link">
+                        <item.icon /> {label}
+                        {item.flag && (
+                          <img
+                            src={item.flag}
+                            alt=""
+                            className="contact__info-flag"
+                          />
+                        )}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="contact__socials">
@@ -157,12 +160,12 @@ export default function Contact() {
           onSubmit={handleSubmit}
         >
           <div className="contact__field">
-            <label htmlFor="name">Nombre</label>
+            <label htmlFor="name">{t.contact.form.nameLabel}</label>
             <input
               id="name"
               name="name"
               type="text"
-              placeholder="Tu nombre"
+              placeholder={t.contact.form.namePlaceholder}
               value={form.name}
               onChange={handleChange}
               required
@@ -170,12 +173,12 @@ export default function Contact() {
           </div>
 
           <div className="contact__field">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{t.contact.form.emailLabel}</label>
             <input
               id="email"
               name="email"
               type="email"
-              placeholder="tu@email.com"
+              placeholder={t.contact.form.emailPlaceholder}
               value={form.email}
               onChange={handleChange}
               required
@@ -183,12 +186,12 @@ export default function Contact() {
           </div>
 
           <div className="contact__field">
-            <label htmlFor="message">Mensaje</label>
+            <label htmlFor="message">{t.contact.form.messageLabel}</label>
             <textarea
               id="message"
               name="message"
               rows={5}
-              placeholder="Cuéntame en qué puedo ayudarte"
+              placeholder={t.contact.form.messagePlaceholder}
               value={form.message}
               onChange={handleChange}
               required
@@ -213,21 +216,20 @@ export default function Contact() {
             }
           >
             {status === "sending"
-              ? "Enviando..."
+              ? t.contact.form.sending
               : status === "success"
-                ? "¡Enviado!"
-                : "Enviar mensaje"}
+                ? t.contact.form.sent
+                : t.contact.form.submit}
           </Button>
 
           {status === "success" && (
             <p className="contact__status contact__status--success">
-              <FiCheckCircle /> ¡Mensaje enviado! Te responderé pronto.
+              <FiCheckCircle /> {t.contact.status.success}
             </p>
           )}
           {status === "error" && (
             <p className="contact__status contact__status--error">
-              Hubo un error al enviar. Intenta de nuevo o escríbeme directo a
-              marco10011111@gmail.com.
+              {t.contact.status.error}
             </p>
           )}
         </form>

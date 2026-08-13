@@ -1,36 +1,35 @@
 import { FiCalendar, FiCheckCircle, FiUsers } from "react-icons/fi";
 import { useReveal } from "../../hooks/useReveal";
+import { useLanguage } from "../../context/language-context";
 import ScrollRevealText from "../ScrollRevealText/ScrollRevealText";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import "./About.css";
 
 const stats = [
-  { value: "3+", label: "Años de experiencia", icon: FiCalendar },
-  { value: "10+", label: "Proyectos entregados", icon: FiCheckCircle },
-  { value: "2", label: "Trabajo en equipo / freelance", icon: FiUsers },
-];
+  { value: "3+", key: "experience", icon: FiCalendar },
+  { value: "10+", key: "delivered", icon: FiCheckCircle },
+  { value: "2", key: "teamwork", icon: FiUsers },
+] as const;
 
 export default function About() {
   const { ref: statsRef, isVisible: statsVisible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section id="about" className="section-view about">
       <div className="container about__grid">
         <div className="about__intro">
           <SectionHeading
-            eyebrow="Sobre mí"
+            eyebrow={t.about.eyebrow}
             title={
               <>
-                Convierto ideas en productos digitales{" "}
-                <span className="text-gradient-shimmer">reales</span>
+                {t.about.titlePrefix}
+                <span className="text-gradient-shimmer">{t.about.titleHighlight}</span>
               </>
             }
           />
 
-          <ScrollRevealText
-            className="about__text"
-            text="Más de 3 años construyendo soluciones web, entre proyectos institucionales y freelance. Me enfoco en frontend sin perder de vista el backend, cuidando cada detalle hasta que el producto se sienta realmente pulido. Disfruto resolver problemas reales con código limpio y aprender algo nuevo en cada proyecto."
-          />
+          <ScrollRevealText className="about__text" text={t.about.text} />
         </div>
 
         <div
@@ -39,12 +38,12 @@ export default function About() {
           style={{ transitionDelay: "150ms" }}
         >
           {stats.map((stat) => (
-            <div key={stat.label} className="about__stat">
+            <div key={stat.key} className="about__stat">
               <div className="about__stat-top">
                 <stat.icon className="about__stat-icon" />
                 <span className="about__stat-value">{stat.value}</span>
               </div>
-              <span className="about__stat-label">{stat.label}</span>
+              <span className="about__stat-label">{t.about.stats[stat.key]}</span>
             </div>
           ))}
         </div>

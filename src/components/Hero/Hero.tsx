@@ -1,6 +1,7 @@
 import { FiFolder, FiGithub, FiLinkedin, FiMail, FiMessageCircle } from "react-icons/fi";
 import { scrollToSection } from "../../lib/lenis";
 import { useReveal } from "../../hooks/useReveal";
+import { useLanguage } from "../../context/language-context";
 import { Button } from "../Button/Button";
 import ShaderNoise from "../ShaderNoise/ShaderNoise";
 import HeroName from "./HeroName";
@@ -8,6 +9,7 @@ import "./Hero.css";
 
 export default function Hero() {
   const { ref: contentRef, isVisible: contentVisible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section id="hero" className="section-view hero">
@@ -17,15 +19,11 @@ export default function Hero() {
           ref={contentRef}
           className={`hero__content reveal ${contentVisible ? "is-visible" : ""}`}
         >
-          <span className="eyebrow">Full Stack Developer</span>
+          <span className="eyebrow">{t.hero.eyebrow}</span>
 
           <HeroName />
 
-          <p className="hero__description">
-            Desarrollador con más de 3 años de experiencia construyendo
-            productos digitales, con un enfoque especial en frontend y
-            experiencias de usuario modernas.
-          </p>
+          <p className="hero__description">{t.hero.description}</p>
 
           <div className="hero__actions">
             <Button
@@ -36,7 +34,7 @@ export default function Hero() {
               iconPosition="left"
               onClick={() => scrollToSection("projects")}
             >
-              Ver proyectos
+              {t.hero.ctaProjects}
             </Button>
             <Button
               as="a"
@@ -46,7 +44,7 @@ export default function Hero() {
               iconPosition="left"
               onClick={() => scrollToSection("contact")}
             >
-              Contactarme
+              {t.hero.ctaContact}
             </Button>
           </div>
 

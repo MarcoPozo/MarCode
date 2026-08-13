@@ -8,8 +8,8 @@ export default function Layout() {
   const location = useLocation();
 
   useEffect(() => {
-    // The browser's own scroll restoration fights our reset below — it tries
-    // to bring back whatever position this history entry last had.
+    // La restauración de scroll nativa del navegador pelea con el reset de
+    // abajo — intenta volver a la posición que tenía esta entrada del historial.
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
@@ -19,10 +19,10 @@ export default function Layout() {
     };
   }, []);
 
-  // Route changes without a target section (e.g. "Ver todos los proyectos")
-  // should land at the top of the new page, not wherever the previous page
-  // happened to be scrolled to. Hash links (like "/#projects") already jump
-  // to their target section, so leave those alone.
+  // Los cambios de ruta sin una sección destino (ej. "Ver todos los proyectos")
+  // deben aterrizar arriba de la nueva página, no donde haya quedado la
+  // página anterior. Los enlaces con hash (como "/#projects") ya saltan a su
+  // sección destino, así que esos se dejan tal cual.
   useEffect(() => {
     if (location.hash) return;
     const lenis = getLenis();

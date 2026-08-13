@@ -22,9 +22,9 @@ export function useMagnetic<T extends HTMLElement>({
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // The listener lives on the element itself, so `onMouseMove` only ever
-  // fires while the cursor is already inside its bounds — the detection
-  // area is the element's own edge, no separate radius needed.
+  // El listener vive en el propio elemento, así que `onMouseMove` solo se
+  // dispara mientras el cursor ya está dentro de sus límites — el área de
+  // detección es el propio borde del elemento, sin necesidad de un radio aparte.
   const handleMouseMove = (e: { clientX: number; clientY: number }) => {
     if (reducedMotion) return;
     const el = ref.current;

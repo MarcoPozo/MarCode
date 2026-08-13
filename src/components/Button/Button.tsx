@@ -9,9 +9,10 @@ interface BaseButtonProps {
   icon?: ReactNode;
   iconPosition?: "left" | "right";
   /**
-   * When set, `icon` is wrapped in an AnimatePresence keyed by this value,
-   * so swapping icons (e.g. send → spinner → check) springs in/out instead
-   * of snapping. Leave unset for a plain static icon.
+   * Si se define, `icon` se envuelve en un AnimatePresence con este valor
+   * como key, así el cambio de ícono (ej. enviar → spinner → check) hace
+   * un spring de entrada/salida en vez de saltar de golpe. Dejar sin
+   * definir para un ícono estático simple.
    */
   iconKey?: string;
   className?: string;

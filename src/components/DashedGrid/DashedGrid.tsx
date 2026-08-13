@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 import "./DashedGrid.css";
 
-// A tileable 60x60 mask: a 1px dashed line along the tile's top edge and one
-// along its left edge. Repeated, adjacent tiles' edges combine into a full
-// dashed grid — cheaper than drawing every line by hand. `fill="#fff"` here
-// is opaque-for-the-mask, not a paint color — this SVG is embedded as a data
-// URI, an isolated document that can't inherit CSS custom properties from
-// the page, so it can't reference var(--white-rgb) like everything else.
+// Una máscara tileable de 60x60: una línea punteada de 1px en el borde
+// superior del tile y otra en el borde izquierdo. Al repetirse, los bordes
+// de tiles adyacentes se combinan en una grilla punteada completa — más
+// barato que dibujar cada línea a mano. El `fill="#fff"` de acá es opaco
+// para la máscara, no un color de pintura — este SVG está embebido como
+// data URI, un documento aislado que no puede heredar propiedades
+// personalizadas de CSS de la página, así que no puede usar
+// var(--white-rgb) como el resto del código.
 const GRID_SVG =
   '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" shape-rendering="crispEdges">' +
   '<defs>' +
@@ -21,12 +23,12 @@ const GRID_MASK = `url("data:image/svg+xml,${encodeURIComponent(GRID_SVG)}")`;
 const SPOT_SIZE = 260;
 
 interface DashedGridProps {
-  /** When false, renders a plain static grid — no shimmer sweep, no cursor spotlight. */
+  /** Si es false, renderiza una grilla estática simple — sin barrido shimmer ni spotlight de cursor. */
   interactive?: boolean;
-  /** Auto-sweeping glow that plays even without hovering. Only relevant when interactive. */
+  /** Glow de barrido automático que se reproduce incluso sin hover. Solo aplica si interactive. */
   shimmer?: boolean;
-  /** Fades all four edges (instead of just top/bottom) so the grid can bleed
-   * past its container without a hard rectangular cutoff. */
+  /** Desvanece los cuatro bordes (en vez de solo arriba/abajo) para que la
+   * grilla se pueda extender más allá de su contenedor sin un corte rectangular duro. */
   vignette?: boolean;
 }
 

@@ -11,11 +11,12 @@
   overflow: hidden;
 }
 
-/* Compound selector so this always wins over the generic .reveal transition
-   regardless of CSS load order — the card needs its own faster border/transform
-   timing for hover on top of the reveal-in fade. */
+/* Selector compuesto para que esto siempre gane sobre la transición genérica
+   de .reveal sin importar el orden de carga del CSS — la card necesita su
+   propio timing de border/transform, más rápido, para el hover sobre el
+   fade de entrada. */
 .project-card.reveal {
-  transition: border-color var(--transition-fast), transform 0.4s ease, opacity 0.6s ease;
+  transition: border-color var(--transition-fast), transform var(--duration-card-transform) ease, opacity var(--duration-card-opacity) ease;
 }
 
 .project-card:hover {

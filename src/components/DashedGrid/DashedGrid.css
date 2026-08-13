@@ -68,7 +68,7 @@
 .dashed-grid__shimmer-clip {
   -webkit-mask-size: 40vw 130%;
   mask-size: 40vw 130%;
-  animation: dashed-grid-shimmer 10s linear infinite;
+  animation: dashed-grid-shimmer var(--duration-grid-shimmer) linear infinite;
 }
 
 @keyframes dashed-grid-shimmer {

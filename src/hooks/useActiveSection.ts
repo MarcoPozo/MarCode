@@ -14,9 +14,10 @@ export function useActiveSection(sectionIds: string[]) {
 
       const navbarHeight =
         document.querySelector<HTMLElement>(".navbar")?.offsetHeight ?? 0;
-      // Sections carry a lot of top/bottom padding, so checking right at the
-      // fold is too fragile against smooth-scroll landing precision. Check a
-      // point further into the viewport instead, well past that dead zone.
+      // Las secciones tienen mucho padding arriba/abajo, así que revisar
+      // justo en el borde es demasiado frágil ante la precisión del
+      // smooth-scroll. Se revisa un punto más adentro del viewport, bien
+      // pasada esa zona muerta.
       const activationLine = window.scrollY + navbarHeight + window.innerHeight * 0.3;
 
       let current = ids[0];

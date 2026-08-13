@@ -37,9 +37,9 @@ export function scrollToSection(id: string) {
   const target = document.getElementById(id);
   if (!target) return;
 
-  // `html { scroll-padding-top }` already accounts for the fixed navbar and
-  // Lenis reads it automatically — don't also pass a manual offset here, or
-  // the navbar height gets subtracted twice and every scroll lands short.
+  // `html { scroll-padding-top }` ya considera el navbar fijo y Lenis lo lee
+  // automáticamente — no pasar también un offset manual acá, o la altura del
+  // navbar se resta dos veces y todo scroll queda corto.
   if (lenis) {
     lenis.scrollTo(target);
   } else {

@@ -27,9 +27,9 @@ export default function ScrollRevealText({ text, className = "" }: ScrollRevealT
     const update = () => {
       rafId = 0;
       const rect = el.getBoundingClientRect();
-      // Progress reaches 0 while the block's top is still low in the
-      // viewport (85%) and 1 once its top has scrolled up past 35% —
-      // a typical "reveal as it crosses the middle of the screen" range.
+      // El progreso llega a 0 mientras el borde superior del bloque sigue
+      // bajo en el viewport (85%) y a 1 una vez que sube más allá del 35% —
+      // el rango típico de "revelar al cruzar la mitad de la pantalla".
       const start = window.innerHeight * 0.85;
       const end = window.innerHeight * 0.35;
       const raw = (start - rect.top) / (start - end);

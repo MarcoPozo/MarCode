@@ -54,9 +54,10 @@ void main() {
 
   float glow = smoothstep(0.35, 0.9, n);
 
-  // gl_FragCoord.y is 0 at the bottom of the canvas — fade the noise's own
-  // color contribution out near the bottom edge so it blends into the next
-  // section's solid background instead of being covered by a CSS overlay.
+  // gl_FragCoord.y vale 0 en la parte inferior del canvas — se desvanece el
+  // aporte de color del ruido cerca del borde inferior para que se mezcle
+  // con el fondo sólido de la siguiente sección, en vez de taparlo con un
+  // overlay de CSS.
   float edgeFade = smoothstep(0.0, 0.32, uv.y);
   vec3 color = mix(uBg, uAccent, glow * 0.5 * edgeFade);
 
@@ -88,8 +89,8 @@ function compileShader(gl: WebGLRenderingContext, type: number, src: string) {
 
 interface ShaderNoiseProps {
   extendBehindNavbar?: boolean;
-  /** Name of a CSS custom property to read the glow color from (e.g.
-   *  "--glow-muted"). Falls back to --accent-text when omitted. */
+  /** Nombre de una propiedad personalizada de CSS de la que leer el color
+   *  del glow (ej. "--glow-muted"). Si se omite, cae en --accent-text. */
   accentColor?: string;
 }
 
@@ -154,8 +155,9 @@ export default function ShaderNoise({
     let height = 0;
 
     const resize = () => {
-      // Extend the canvas up behind the fixed navbar (`.hero` starts right
-      // below it) so the glass navbar blurs the shader instead of empty bg.
+      // Extiende el canvas hacia arriba, detrás del navbar fijo (`.hero`
+      // empieza justo debajo), así el navbar de vidrio difumina el shader
+      // en vez de un fondo vacío.
       const navbarHeight = extendBehindNavbar
         ? (document.querySelector<HTMLElement>(".navbar")?.offsetHeight ?? 0)
         : 0;

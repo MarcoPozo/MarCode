@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const RADIUS_RATIO = 1.2; // radius scales with the current font-size
+const RADIUS_RATIO = 1.2; // el radio escala según el font-size actual
 
 export default function HeroName() {
   const containerRef = useRef<HTMLHeadingElement>(null);

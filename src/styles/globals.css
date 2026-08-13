@@ -1,7 +1,7 @@
-/* Fonts */
+/* Fuentes */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;600;700&display=swap');
 
-/* Custom properties */
+/* Propiedades personalizadas */
 :root {
   --font-heading: 'Anton', system-ui, sans-serif;
   --font-body: 'Outfit', system-ui, sans-serif;
@@ -61,10 +61,11 @@
   --border-thin: 1px;
   --border-medium: 2px;
 
-  /* Raw R,G,B triplets — for components that need a custom alpha via
-     rgba(var(--x-rgb), N) instead of a fixed token. Keeps every "white",
-     "black" and "accent" alpha blend derived from the same three source
-     colors instead of hand-typed one-offs scattered per component. */
+  /* Tripletes R,G,B crudos — para componentes que necesitan una opacidad
+     personalizada vía rgba(var(--x-rgb), N) en vez de un token fijo. Así
+     cada mezcla de "blanco", "negro" y "acento" con transparencia deriva
+     de estos mismos tres colores, en vez de valores sueltos tipeados a
+     mano y repetidos en cada componente. */
   --black-rgb: 0, 0, 0;
   --white-rgb: 255, 255, 255;
   --accent-rgb: 192, 57, 43;
@@ -77,6 +78,14 @@
   --transition-fast: 150ms ease;
   --transition-base: 300ms ease;
   --transition-slow: 500ms ease;
+
+  /* Duraciones de animación (@keyframes) — distintas de --transition-*,
+     que es para el feedback de hover/focus en interacciones puntuales. */
+  --duration-spin: 0.8s;
+  --duration-shimmer: 3s;
+  --duration-grid-shimmer: 10s;
+  --duration-card-transform: 0.4s;
+  --duration-card-opacity: 0.6s;
 
   --z-base: 0;
   --z-raised: 1;
@@ -92,7 +101,7 @@
   --icon-xl: 3rem;
 }
 
-/* Dark theme */
+/* Tema oscuro */
 [data-theme="dark"] {
   --bg-primary: #0a0a0b;
   --bg-secondary: #111113;
@@ -126,7 +135,7 @@
   --selection-text: #f5f5f5;
 }
 
-/* Light theme */
+/* Tema claro */
 [data-theme="light"] {
   --bg-primary: #ffffff;
   --bg-secondary: #f7f7f8;
@@ -160,7 +169,7 @@
   --selection-text: #111113;
 }
 
-/* Reset */
+/* Reinicio de estilos */
 *,
 *::before,
 *::after {
@@ -189,11 +198,11 @@ main {
   padding-top: var(--navbar-height);
 }
 
-/* Typography */
+/* Tipografía */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  /* Archivo Black only ships one weight (400, already "black" by design) —
-     requesting 600 would trigger synthetic bold instead of the real font. */
+  /* Anton solo viene en un peso (400, ya es "black" por diseño) — pedir 600
+     activaría un bold sintético en vez de usar la fuente real. */
   font-weight: var(--weight-regular);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -230,7 +239,7 @@ img {
   color: var(--selection-text);
 }
 
-/* Scrollbar */
+/* Barra de desplazamiento */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -244,7 +253,7 @@ img {
   border-radius: var(--radius-full);
 }
 
-/* Utilities */
+/* Utilidades */
 .container {
   width: 100%;
   max-width: var(--container-max-width);
@@ -279,7 +288,7 @@ img {
   letter-spacing: var(--tracking-wider);
 }
 
-/* Scroll reveal */
+/* Revelado al hacer scroll */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -321,7 +330,7 @@ img {
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: text-shimmer 3s ease-in-out infinite;
+  animation: text-shimmer var(--duration-shimmer) ease-in-out infinite;
 }
 
 @keyframes text-shimmer {
@@ -340,7 +349,7 @@ img {
   }
 }
 
-/* Buttons */
+/* Botones */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -390,7 +399,7 @@ img {
   transform: translateY(-1px);
 }
 
-/* Responsive */
+/* Responsivo */
 @media (max-width: 768px) {
   :root {
     --text-5xl: 2.5rem;
@@ -409,10 +418,10 @@ img {
   }
 }
 
-/* Large/wide monitors — most spacing and type already lives in rem, so
-   bumping the root font-size scales the whole site proportionally instead
-   of the fixed-width container just floating small in a sea of empty
-   margin. */
+/* Monitores grandes/anchos — casi todo el espaciado y la tipografía ya vive
+   en rem, así que subir el font-size raíz escala todo el sitio de forma
+   proporcional, en vez de que el contenedor de ancho fijo quede flotando
+   chico en medio de un montón de margen vacío. */
 @media (min-width: 1600px) {
   html {
     font-size: 112.5%;

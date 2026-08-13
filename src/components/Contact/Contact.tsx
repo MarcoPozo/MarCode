@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import emailjs from "@emailjs/browser";
-import { AnimatePresence, motion } from "motion/react";
 import {
   FiCheck,
   FiCheckCircle,
@@ -14,6 +13,7 @@ import {
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useReveal } from "../../hooks/useReveal";
+import { Button } from "../Button/Button";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import "./Contact.css";
 
@@ -195,59 +195,29 @@ export default function Contact() {
             />
           </div>
 
-          <motion.button
+          <Button
             type="submit"
+            variant="primary"
             className="contact__submit"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.96 }}
+            iconPosition="left"
             disabled={status === "sending"}
+            iconKey={status === "sending" ? "sending" : status === "success" ? "success" : "send"}
+            icon={
+              status === "sending" ? (
+                <FiLoader className="contact__submit-spinner" />
+              ) : status === "success" ? (
+                <FiCheck />
+              ) : (
+                <FiSend />
+              )
+            }
           >
-            <span className="contact__submit-icon">
-              <AnimatePresence mode="popLayout" initial={false}>
-                {status === "sending" ? (
-                  <motion.span
-                    key="sending"
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.5, opacity: 0 }}
-                    transition={{ type: "spring", stiffness: 600, damping: 25 }}
-                    className="contact__submit-icon-inner"
-                  >
-                    <FiLoader className="contact__submit-spinner" />
-                  </motion.span>
-                ) : status === "success" ? (
-                  <motion.span
-                    key="check"
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.5, opacity: 0 }}
-                    transition={{ type: "spring", stiffness: 600, damping: 25 }}
-                    className="contact__submit-icon-inner"
-                  >
-                    <FiCheck />
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="send"
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.5, opacity: 0 }}
-                    transition={{ type: "spring", stiffness: 600, damping: 25 }}
-                    className="contact__submit-icon-inner"
-                  >
-                    <FiSend />
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </span>
-            <span className="contact__submit-label">
-              {status === "sending"
-                ? "Enviando..."
-                : status === "success"
-                  ? "¡Enviado!"
-                  : "Enviar mensaje"}
-            </span>
-          </motion.button>
+            {status === "sending"
+              ? "Enviando..."
+              : status === "success"
+                ? "¡Enviado!"
+                : "Enviar mensaje"}
+          </Button>
 
           {status === "success" && (
             <p className="contact__status contact__status--success">

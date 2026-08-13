@@ -342,6 +342,11 @@ img {
   font-size: 1.1em;
 }
 
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
 .btn--primary {
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
   color: var(--text-inverse);

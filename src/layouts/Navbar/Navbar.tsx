@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
-import { FiDownload } from "react-icons/fi";
+import { FiDownload, FiMoon, FiSun } from "react-icons/fi";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import { scrollToSection } from "../../lib/lenis";
 import "./Navbar.css";
 
 type Lang = "es" | "en";
+type Theme = "dark" | "light";
 
 const navLinks = [
   { label: "Inicio", id: "hero" },
@@ -19,6 +20,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [lang, setLang] = useState<Lang>("es");
+  const [theme, setTheme] = useState<Theme>("dark");
   const { pathname } = useLocation();
   const isHome = pathname === "/";
   const activeId = useActiveSection(navLinks.map((link) => link.id));
@@ -64,14 +66,59 @@ export default function Navbar() {
             |
           </li>
 
-          <li>
+          <li className="navbar__utility-group">
             <button
               type="button"
               className="navbar__lang-toggle"
               onClick={() => setLang((prev) => (prev === "es" ? "en" : "es"))}
               aria-label="Cambiar idioma"
             >
-              {lang.toUpperCase()}
+              <img
+                src="https://flagcdn.com/us.svg"
+                alt=""
+                className={`navbar__lang-flag ${
+                  lang === "en" ? "navbar__lang-flag--active" : ""
+                }`}
+              />
+              <span className="navbar__switch">
+                <span
+                  className={`navbar__switch-knob ${
+                    lang === "es" ? "navbar__switch-knob--right" : ""
+                  }`}
+                />
+              </span>
+              <img
+                src="https://flagcdn.com/ec.svg"
+                alt=""
+                className={`navbar__lang-flag ${
+                  lang === "es" ? "navbar__lang-flag--active" : ""
+                }`}
+              />
+            </button>
+
+            <button
+              type="button"
+              className="navbar__theme-toggle"
+              onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+              aria-label="Cambiar tema"
+            >
+              <FiSun
+                className={`navbar__theme-icon ${
+                  theme === "light" ? "navbar__theme-icon--active" : ""
+                }`}
+              />
+              <span className="navbar__switch">
+                <span
+                  className={`navbar__switch-knob ${
+                    theme === "dark" ? "navbar__switch-knob--right" : ""
+                  }`}
+                />
+              </span>
+              <FiMoon
+                className={`navbar__theme-icon ${
+                  theme === "dark" ? "navbar__theme-icon--active" : ""
+                }`}
+              />
             </button>
           </li>
 

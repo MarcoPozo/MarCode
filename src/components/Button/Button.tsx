@@ -1,10 +1,19 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "motion/react";
+
+const MotionLink = motion.create(Link);
 
 interface BaseButtonProps {
   variant?: "primary" | "outline";
   icon?: ReactNode;
   iconPosition?: "left" | "right";
+  /**
+   * When set, `icon` is wrapped in an AnimatePresence keyed by this value,
+   * so swapping icons (e.g. send → spinner → check) springs in/out instead
+   * of snapping. Leave unset for a plain static icon.
+   */
+  iconKey?: string;
   className?: string;
   children: ReactNode;
   onClick?: () => void;
@@ -38,6 +47,7 @@ export function Button({
   variant = "primary",
   icon,
   iconPosition = "right",
+  iconKey,
   className = "",
   children,
   onClick,
@@ -45,50 +55,75 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const classes = `btn btn--${variant} ${className}`.trim();
+
+  const renderedIcon = !icon ? null : iconKey ? (
+    <AnimatePresence mode="popLayout" initial={false}>
+      <motion.span
+        key={iconKey}
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.5, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 600, damping: 25 }}
+        className="btn__icon"
+      >
+        {icon}
+      </motion.span>
+    </AnimatePresence>
+  ) : (
+    icon
+  );
+
   const content =
     iconPosition === "left" ? (
       <>
-        {icon}
+        {renderedIcon}
         {children}
       </>
     ) : (
       <>
         {children}
-        {icon}
+        {renderedIcon}
       </>
     );
 
   if (rest.as === "link") {
     return (
-      <Link to={rest.to} className={classes} onClick={onClick}>
+      <MotionLink
+        to={rest.to}
+        className={classes}
+        onClick={onClick}
+        whileTap={{ scale: 0.96 }}
+      >
         {content}
-      </Link>
+      </MotionLink>
     );
   }
 
   if (rest.as === "a") {
     return (
-      <a
+      <motion.a
         href={rest.href}
         className={classes}
+        whileTap={{ scale: 0.96 }}
         onClick={(e) => {
           e.preventDefault();
           onClick?.();
         }}
       >
         {content}
-      </a>
+      </motion.a>
     );
   }
 
   return (
-    <button
+    <motion.button
       type={rest.type ?? "button"}
       className={classes}
       onClick={onClick}
       disabled={disabled}
+      whileTap={{ scale: 0.96 }}
     >
       {content}
-    </button>
+    </motion.button>
   );
 }

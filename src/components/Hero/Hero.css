@@ -45,8 +45,9 @@
 
 .hero__description {
   font-size: var(--text-lg);
-  color: var(--text-secondary);
+  color: var(--text-on-shader);
   max-width: 700px;
+  text-shadow: var(--legibility-halo);
 }
 
 .hero__actions {

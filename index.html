@@ -2,6 +2,21 @@
 <html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Aplica el tema guardado antes del primer paint, para no mostrar un
+      // flash del tema oscuro por defecto cuando el usuario eligió claro.
+      (function () {
+        try {
+          var stored = localStorage.getItem("marcode-theme");
+          if (stored === "light") {
+            document.documentElement.setAttribute("data-theme", "light");
+          }
+        } catch (e) {
+          // localStorage inaccesible (modo privado, etc.) — se queda en el
+          // tema oscuro por defecto del atributo estático de arriba.
+        }
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marco Pozo - Portafolio</title>

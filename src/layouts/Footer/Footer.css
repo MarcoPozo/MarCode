@@ -2,6 +2,10 @@
   position: relative;
   isolation: isolate;
   background-color: var(--bg-secondary);
+  /* Se hereda a todo el texto descendiente — el fondo animado detrás varía
+     entre blanco y gris, así que el halo evita que el contraste dependa de
+     dónde caiga el ruido. */
+  text-shadow: var(--legibility-halo);
 }
 
 .footer .footer__grid {
@@ -31,7 +35,7 @@
 
 .footer__tagline {
   font-size: var(--text-sm);
-  color: var(--text-secondary);
+  color: var(--text-on-shader);
   max-width: 320px;
 }
 
@@ -46,7 +50,7 @@
   align-items: center;
   gap: var(--space-xs);
   font-size: var(--text-base);
-  color: var(--text-secondary);
+  color: var(--text-on-shader);
   transition: color var(--transition-fast);
 }
 
@@ -73,7 +77,7 @@
 
 .footer__connect-email {
   font-size: var(--text-base);
-  color: var(--text-secondary);
+  color: var(--text-on-shader);
   transition: color var(--transition-fast);
 }
 
@@ -83,7 +87,7 @@
 
 .footer__connect-location {
   font-size: var(--text-base);
-  color: var(--text-muted);
+  color: var(--text-on-shader-muted);
   margin-top: var(--space-xs);
 }
 
@@ -99,7 +103,7 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  color: var(--text-secondary);
+  color: var(--text-on-shader);
   border: var(--border-thin) solid var(--border-default);
   border-radius: var(--radius-md);
   transition: color var(--transition-fast), border-color var(--transition-fast);
@@ -121,7 +125,7 @@
 
 .footer__copyright {
   font-size: var(--text-xs);
-  color: var(--text-muted);
+  color: var(--text-on-shader-muted);
   text-align: center;
 }
 

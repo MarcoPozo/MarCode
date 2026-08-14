@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useTheme } from "../../context/theme-context";
 import "./ShaderNoise.css";
 
 const VERTEX_SRC = `
@@ -66,13 +67,27 @@ void main() {
 `;
 
 function hexToVec3(hex: string): [number, number, number] {
-  const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.trim());
-  if (!match) return [0.04, 0.04, 0.04];
-  return [
-    parseInt(match[1], 16) / 255,
-    parseInt(match[2], 16) / 255,
-    parseInt(match[3], 16) / 255,
-  ];
+  const trimmed = hex.trim();
+  const long = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(trimmed);
+  if (long) {
+    return [
+      parseInt(long[1], 16) / 255,
+      parseInt(long[2], 16) / 255,
+      parseInt(long[3], 16) / 255,
+    ];
+  }
+  // getComputedStyle puede serializar un hex de 6 dígitos a su forma corta
+  // (ej. #ffffff -> #fff) — sin esto, el tema claro caía al color de
+  // respaldo oscuro apenas el navegador lo abreviaba.
+  const short = /^#?([a-f\d])([a-f\d])([a-f\d])$/i.exec(trimmed);
+  if (short) {
+    return [
+      parseInt(short[1] + short[1], 16) / 255,
+      parseInt(short[2] + short[2], 16) / 255,
+      parseInt(short[3] + short[3], 16) / 255,
+    ];
+  }
+  return [0.04, 0.04, 0.04];
 }
 
 function compileShader(gl: WebGLRenderingContext, type: number, src: string) {
@@ -99,6 +114,12 @@ export default function ShaderNoise({
   accentColor,
 }: ShaderNoiseProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
+  // Puente entre el efecto de setup (que crea el contexto GL una sola vez)
+  // y el efecto de tema (que solo necesita re-subir los uniforms de color) —
+  // sin esto habría que destruir y recrear todo el programa GL en cada
+  // toggle de tema.
+  const updateColorsRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -113,13 +134,6 @@ export default function ShaderNoise({
       "(prefers-reduced-motion: reduce)"
     ).matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const style = getComputedStyle(document.documentElement);
-    const accent = hexToVec3(
-      (accentColor && style.getPropertyValue(accentColor).trim()) ||
-        style.getPropertyValue("--accent-text").trim() ||
-        "#e74c3c",
-    );
-    const bg = hexToVec3(style.getPropertyValue("--bg-primary").trim() || "#0a0a0b");
 
     const vertexShader = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SRC);
     const fragmentShader = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SRC);
@@ -148,8 +162,21 @@ export default function ShaderNoise({
     const uTime = gl.getUniformLocation(program, "uTime");
     const uAccent = gl.getUniformLocation(program, "uAccent");
     const uBg = gl.getUniformLocation(program, "uBg");
-    gl.uniform3f(uAccent, accent[0], accent[1], accent[2]);
-    gl.uniform3f(uBg, bg[0], bg[1], bg[2]);
+
+    const updateColors = () => {
+      const style = getComputedStyle(document.documentElement);
+      const accent = hexToVec3(
+        (accentColor && style.getPropertyValue(accentColor).trim()) ||
+          style.getPropertyValue("--accent-text").trim() ||
+          "#e74c3c",
+      );
+      const bg = hexToVec3(style.getPropertyValue("--bg-primary").trim() || "#0a0a0b");
+      gl.useProgram(program);
+      gl.uniform3f(uAccent, accent[0], accent[1], accent[2]);
+      gl.uniform3f(uBg, bg[0], bg[1], bg[2]);
+    };
+    updateColorsRef.current = updateColors;
+    updateColors();
 
     let width = 0;
     let height = 0;
@@ -203,8 +230,20 @@ export default function ShaderNoise({
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);
       gl.deleteBuffer(positionBuffer);
+      updateColorsRef.current = () => {};
     };
   }, [extendBehindNavbar, accentColor]);
+
+  useEffect(() => {
+    // Se difiere porque ShaderNoise, al ser descendiente de ThemeProvider,
+    // dispara este efecto antes que el de ThemeProvider (React ejecuta los
+    // efectos de hijos primero) — leer getComputedStyle aquí mismo todavía
+    // vería el atributo data-theme viejo. requestAnimationFrame no sirve
+    // para este defer porque se pausa por completo en pestañas no visibles;
+    // setTimeout sí se dispara siempre.
+    const id = window.setTimeout(() => updateColorsRef.current(), 0);
+    return () => window.clearTimeout(id);
+  }, [theme]);
 
   return <canvas ref={canvasRef} className="shader-noise" aria-hidden="true" />;
 }

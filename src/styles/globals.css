@@ -121,6 +121,14 @@
 
   --color-success: #4caf87;
   --glow-muted: #3a3a3f;
+  /* En oscuro el Hero mantiene su glow rojo de acento; en claro usa el
+     mismo gris apagado que el Footer en vez de mezclar blanco con rojo. */
+  --hero-glow-accent: var(--accent-text);
+  /* En oscuro el fondo animado ya es casi negro, así que el texto claro
+     siempre tiene contraste de sobra — no hace falta halo. */
+  --legibility-halo: none;
+  --text-on-shader: var(--text-secondary);
+  --text-on-shader-muted: var(--text-muted);
 
   --border-subtle: rgba(var(--white-rgb), 0.06);
   --border-default: rgba(var(--white-rgb), 0.12);
@@ -145,7 +153,7 @@
 
   --text-primary: #111113;
   --text-secondary: #555555;
-  --text-muted: #888888;
+  --text-muted: #6e6e6e;
   --text-inverse: #f5f5f5;
 
   --accent: #c0392b;
@@ -155,6 +163,17 @@
 
   --color-success: #2f9e6d;
   --glow-muted: #3a3a3f;
+  --hero-glow-accent: var(--glow-muted);
+  /* El fondo animado del Hero/Footer mezcla blanco con un gris oscuro, así
+     que en zonas donde la mezcla es más oscura el texto secundario/muted
+     pierde contraste. Un halo sutil del color de fondo detrás del texto
+     mantiene la legibilidad sin depender de dónde caiga el ruido animado. */
+  --legibility-halo: 0 0 3px var(--bg-primary), 0 0 10px var(--bg-primary);
+  /* --text-secondary/--text-muted normales quedan livianos a propósito para
+     fondos sólidos; sobre el fondo animado del Hero/Footer necesitan más
+     peso para no lavarse contra las zonas más claras del ruido. */
+  --text-on-shader: #333333;
+  --text-on-shader-muted: #4d4d4d;
 
   --border-subtle: rgba(var(--black-rgb), 0.06);
   --border-default: rgba(var(--black-rgb), 0.12);

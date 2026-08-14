@@ -13,7 +13,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="section-view hero">
-      <ShaderNoise />
+      <ShaderNoise accentColor="--hero-glow-accent" />
       <div className="container hero__grid">
         <div
           ref={contentRef}

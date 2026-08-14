@@ -5,14 +5,13 @@ import { FiDownload, FiMoon, FiSun } from "react-icons/fi";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import { scrollToSection } from "../../lib/lenis";
 import { useLanguage } from "../../context/language-context";
+import { useTheme } from "../../context/theme-context";
 import { navSections } from "../../data/navigation";
 import "./Navbar.css";
 
-type Theme = "dark" | "light";
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState<Theme>("dark");
+  const { theme, toggleTheme } = useTheme();
   const { lang, toggleLang, t } = useLanguage();
   const { pathname } = useLocation();
   const isHome = pathname === "/";
@@ -92,7 +91,7 @@ export default function Navbar() {
             <button
               type="button"
               className="navbar__theme-toggle"
-              onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+              onClick={toggleTheme}
               aria-label={t.themeToggle.ariaLabel}
             >
               <FiSun

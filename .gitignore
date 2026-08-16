@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Env vars — nunca deben subirse, ni siquiera .env.example con valores reales
+.env
+.env.*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

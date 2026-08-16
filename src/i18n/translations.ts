@@ -83,6 +83,12 @@ export interface Translations {
     location: string;
     copyright: (year: number) => string;
   };
+  notFound: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    backHome: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -172,6 +178,13 @@ export const translations: Record<Language, Translations> = {
       location: "Quito, Ecuador",
       copyright: (year) => `© ${year} Marco Pozo. Todos los derechos reservados.`,
     },
+    notFound: {
+      eyebrow: "Error 404",
+      title: "Esta página no existe",
+      description:
+        "El enlace que seguiste puede estar roto o la página se movió de lugar.",
+      backHome: "Volver al inicio",
+    },
   },
   en: {
     nav: {
@@ -258,6 +271,12 @@ export const translations: Record<Language, Translations> = {
       tagline: "Full Stack Developer building digital experiences with purpose.",
       location: "Quito, Ecuador",
       copyright: (year) => `© ${year} Marco Pozo. All rights reserved.`,
+    },
+    notFound: {
+      eyebrow: "Error 404",
+      title: "This page doesn't exist",
+      description: "The link you followed might be broken, or the page has moved.",
+      backHome: "Back to home",
     },
   },
 };

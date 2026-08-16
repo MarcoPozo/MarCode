@@ -1,0 +1,31 @@
+.not-found {
+  position: relative;
+}
+
+.not-found__content {
+  position: relative;
+  z-index: var(--z-raised);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-lg);
+}
+
+.not-found__code {
+  position: relative;
+  z-index: var(--z-raised);
+  font-family: var(--font-heading);
+  font-size: clamp(5rem, 14vw, 9rem);
+  line-height: var(--leading-none);
+  color: var(--text-muted);
+}
+
+.not-found .section-heading {
+  align-items: center;
+  text-align: center;
+}
+
+.not-found .section-heading__underline {
+  margin-inline: auto;
+}

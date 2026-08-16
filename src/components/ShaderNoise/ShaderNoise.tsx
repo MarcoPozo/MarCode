@@ -165,6 +165,10 @@ export default function ShaderNoise({
 
     const updateColors = () => {
       const style = getComputedStyle(document.documentElement);
+      // Respaldo hardcodeado solo por si getPropertyValue devuelve vacío
+      // (ej. primer paint antes de que globals.css termine de aplicarse) —
+      // replica el valor actual de --accent-text/--bg-primary en oscuro,
+      // no puede ser var() porque ya estamos leyendo el propio token.
       const accent = hexToVec3(
         (accentColor && style.getPropertyValue(accentColor).trim()) ||
           style.getPropertyValue("--accent-text").trim() ||

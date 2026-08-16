@@ -89,6 +89,9 @@ export interface Translations {
     description: string;
     backHome: string;
   };
+  loader: {
+    label: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -185,6 +188,9 @@ export const translations: Record<Language, Translations> = {
         "El enlace que seguiste puede estar roto o la página se movió de lugar.",
       backHome: "Volver al inicio",
     },
+    loader: {
+      label: "Cargando",
+    },
   },
   en: {
     nav: {
@@ -277,6 +283,9 @@ export const translations: Record<Language, Translations> = {
       title: "This page doesn't exist",
       description: "The link you followed might be broken, or the page has moved.",
       backHome: "Back to home",
+    },
+    loader: {
+      label: "Loading",
     },
   },
 };

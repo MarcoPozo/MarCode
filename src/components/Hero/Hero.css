@@ -66,6 +66,9 @@
 }
 
 .hero__socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-secondary);
   font-size: var(--icon-md);
   transition: color var(--transition-fast);
@@ -75,8 +78,6 @@
   color: var(--accent-text);
 }
 
-/* El CV ya está disponible en el navbar de escritorio — acá solo aparece en
-   mobile, donde lo sacamos del menú hamburguesa y lo movimos aquí. */
 .hero__socials-cv {
   display: none;
 }
@@ -84,7 +85,10 @@
 @media (max-width: 768px) {
   .hero__socials-cv {
     display: inline-flex;
-    align-items: center;
+  }
+
+  .hero__description {
+    text-wrap: balance;
   }
 }
 

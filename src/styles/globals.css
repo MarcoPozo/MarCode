@@ -12,9 +12,9 @@
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
-  --text-3xl: 2rem;
-  --text-4xl: 2.5rem;
-  --text-5xl: 3.5rem;
+  --text-3xl: clamp(1.25rem, 0.85rem + 2vw, 2rem);
+  --text-4xl: clamp(1.75rem, 1.35rem + 2vw, 2.5rem);
+  --text-5xl: clamp(2rem, 1.2rem + 4vw, 3.5rem);
 
   --weight-light: 300;
   --weight-regular: 400;
@@ -292,7 +292,7 @@ img {
 }
 
 .section-view {
-  min-height: calc(100vh - var(--navbar-height));
+  min-height: calc(100dvh - var(--navbar-height));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -424,18 +424,16 @@ img {
 /* Responsivo */
 @media (max-width: 768px) {
   :root {
-    --text-5xl: 2.5rem;
-    --text-4xl: 2rem;
-    --text-3xl: 1.5rem;
     --section-padding-y: var(--space-3xl);
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
 @media (max-width: 480px) {
   :root {
-    --text-5xl: 2rem;
-    --text-4xl: 1.75rem;
-    --text-3xl: 1.25rem;
     --section-padding-x: var(--space-md);
   }
 }

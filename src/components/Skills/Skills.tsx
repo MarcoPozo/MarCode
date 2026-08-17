@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useReveal } from "../../hooks/useReveal";
 import { useLanguage } from "../../context/language-context";
 import DashedGrid from "../DashedGrid/DashedGrid";
@@ -57,17 +58,25 @@ function CategoryBlock({
   group,
   index,
   categoryLabel,
+  isActive,
 }: {
   group: (typeof skillGroups)[number];
   index: number;
   categoryLabel: string;
+  isActive: boolean;
 }) {
   const { ref, isVisible } = useReveal<HTMLDivElement>();
 
   return (
     <div
       ref={ref}
-      className={`skills__category-block reveal ${isVisible ? "is-visible" : ""}`}
+      className={`skills__category-block ${isActive ? "skills__category-block--active" : ""} reveal ${
+        // En mobile los bloques inactivos empiezan en display: none, así que
+        // el IntersectionObserver de useReveal nunca los intersecta — sin
+        // el OR con isActive, el bloque recién seleccionado por un tab
+        // aparecería en blanco (atascado en opacity: 0) hasta que scrollees.
+        isVisible || isActive ? "is-visible" : ""
+      }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <h3 className="skills__category-title">{categoryLabel}</h3>
@@ -94,8 +103,11 @@ function CategoryBlock({
   );
 }
 
+type CategoryKey = (typeof skillGroups)[number]["categoryKey"];
+
 export default function Skills() {
   const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>("frontend");
 
   return (
     <section id="skills" className="section-view skills">
@@ -111,6 +123,23 @@ export default function Skills() {
           }
         />
 
+        <div className="skills__tabs" role="tablist">
+          {skillGroups.map((group) => (
+            <button
+              key={group.categoryKey}
+              type="button"
+              role="tab"
+              aria-selected={activeCategory === group.categoryKey}
+              className={`skills__tab ${
+                activeCategory === group.categoryKey ? "skills__tab--active" : ""
+              }`}
+              onClick={() => setActiveCategory(group.categoryKey)}
+            >
+              {t.skills.categories[group.categoryKey]}
+            </button>
+          ))}
+        </div>
+
         <div className="skills__categories">
           {skillGroups.map((group, index) => (
             <CategoryBlock
@@ -118,6 +147,7 @@ export default function Skills() {
               group={group}
               index={index}
               categoryLabel={t.skills.categories[group.categoryKey]}
+              isActive={activeCategory === group.categoryKey}
             />
           ))}
         </div>

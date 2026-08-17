@@ -69,6 +69,7 @@ export default function Navbar() {
                   isHome && activeId === link.id ? "navbar__link--active" : ""
                 }`}
                 onClick={(e) => handleLinkClick(e, link.id)}>
+                <link.icon className="navbar__link-icon" aria-hidden="true" />
                 {t.nav[link.key]}
               </a>
             </li>

@@ -60,6 +60,7 @@
 
   --border-thin: 1px;
   --border-medium: 2px;
+  --border-thick: 3px;
 
   /* Tripletes R,G,B crudos — para componentes que necesitan una opacidad
      personalizada vía rgba(var(--x-rgb), N) en vez de un token fijo. Así

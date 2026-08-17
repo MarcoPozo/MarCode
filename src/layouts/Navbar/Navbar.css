@@ -75,6 +75,10 @@
   transition: color var(--transition-fast);
 }
 
+.navbar__link-icon {
+  display: none;
+}
+
 .navbar__link::after {
   content: "";
   position: absolute;
@@ -195,6 +199,14 @@
 }
 
 @media (max-width: 768px) {
+  /* En mobile la barra y el menú a pantalla completa deben leerse como un
+     mismo bloque de color — con --bg-glass (translúcido) el Hero de atrás
+     se veía a través de ambos. Fondo sólido en vez de glass, así que el
+     backdrop-filter ya no aporta nada (no hay transparencia que difuminar). */
+  .navbar {
+    background-color: var(--bg-primary);
+  }
+
   .navbar__mobile-actions {
     display: flex;
     align-items: center;
@@ -212,14 +224,7 @@
     left: 0;
     width: 100%;
     height: calc(100vh - var(--navbar-height));
-    background-color: var(--bg-glass);
-    /* Mismo glass que la barra del navbar, pero con más blur — a pantalla
-       completa sobre el Hero (mucho contraste detrás) el mismo 14px que
-       usa la barra de 72px no alcanza para que el texto del menú se lea
-       bien; con más blur el fondo queda una mancha de color, no formas
-       reconocibles. */
-    backdrop-filter: blur(28px) saturate(140%);
-    -webkit-backdrop-filter: blur(28px) saturate(140%);
+    background-color: var(--bg-primary);
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
@@ -233,16 +238,21 @@
     transform: translateX(0);
   }
 
-  .navbar__link-item {
-    border-bottom: var(--border-thin) solid var(--border-subtle);
-  }
-
   .navbar__link {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
     padding: var(--space-lg) var(--section-padding-x);
     font-family: var(--font-heading);
     font-size: var(--text-3xl);
     font-weight: var(--weight-regular);
+  }
+
+  .navbar__link-icon {
+    display: inline-flex;
+    font-size: var(--icon-md);
+    color: var(--accent-text);
+    flex-shrink: 0;
   }
 
   /* En mobile la línea activa toma el mismo diseño degradado que
@@ -257,8 +267,8 @@
     display: block;
     left: var(--section-padding-x);
     bottom: 10px;
-    width: 120px;
-    height: 1px;
+    width: 160px;
+    height: var(--border-thick);
     background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.7) 0%, transparent 100%);
   }
 

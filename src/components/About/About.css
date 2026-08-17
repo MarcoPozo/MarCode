@@ -78,21 +78,30 @@
     text-align: center;
   }
 
+  .about__text {
+    font-size: var(--text-lg);
+  }
+
   .about__stats {
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
+    gap: var(--space-lg);
   }
 
   .about__stat {
-    flex: 1 1 200px;
     align-items: center;
     text-align: center;
+    padding: 0;
+    border: none;
+    background: none;
   }
-}
 
-@media (max-width: 480px) {
-  .about__stats {
-    flex-direction: column;
+  .about__stat-icon,
+  .about__stat-value {
+    font-size: var(--text-xl);
+  }
+
+  .about__stat-label {
+    font-size: var(--text-xs);
   }
 }

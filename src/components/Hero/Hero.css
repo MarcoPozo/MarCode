@@ -75,6 +75,19 @@
   color: var(--accent-text);
 }
 
+/* El CV ya está disponible en el navbar de escritorio — acá solo aparece en
+   mobile, donde lo sacamos del menú hamburguesa y lo movimos aquí. */
+.hero__socials-cv {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero__socials-cv {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
 @media (max-width: 900px) {
   .hero__content {
     max-width: 100%;

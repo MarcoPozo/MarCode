@@ -1,4 +1,11 @@
-import { FiFolder, FiGithub, FiLinkedin, FiMail, FiMessageCircle } from "react-icons/fi";
+import {
+  FiDownload,
+  FiFolder,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiMessageCircle,
+} from "react-icons/fi";
 import { scrollToSection } from "../../lib/lenis";
 import { useReveal } from "../../hooks/useReveal";
 import { useLanguage } from "../../context/language-context";
@@ -9,7 +16,7 @@ import "./Hero.css";
 
 export default function Hero() {
   const { ref: contentRef, isVisible: contentVisible } = useReveal<HTMLDivElement>();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <section id="hero" className="section-view hero">
@@ -65,6 +72,14 @@ export default function Hero() {
             </a>
             <a href="mailto:marco10011111@gmail.com" aria-label="Email">
               <FiMail />
+            </a>
+            <a
+              href={lang === "es" ? "/cv/cv-es.pdf" : "/cv/cv-en.pdf"}
+              download
+              className="hero__socials-cv"
+              aria-label="CV"
+            >
+              <FiDownload />
             </a>
           </div>
         </div>

@@ -32,17 +32,37 @@ export default function Navbar() {
           <img src="/logo/logo.svg" alt="MarCode" className="navbar__brand-logo" />
         </Link>
 
-        <button
-          className="navbar__toggle"
-          onClick={() => setIsOpen((prev) => !prev)}
-          aria-label="Toggle navigation menu"
-          aria-expanded={isOpen}>
-          {isOpen ? <HiX /> : <HiMenu />}
-        </button>
+        <div className="navbar__mobile-actions">
+          <button
+            type="button"
+            className="navbar__mobile-btn"
+            onClick={toggleLang}
+            aria-label={t.langToggle.ariaLabel}
+          >
+            {lang.toUpperCase()}
+          </button>
+
+          <button
+            type="button"
+            className="navbar__mobile-btn"
+            onClick={toggleTheme}
+            aria-label={t.themeToggle.ariaLabel}
+          >
+            {theme === "dark" ? <FiMoon /> : <FiSun />}
+          </button>
+
+          <button
+            className="navbar__mobile-btn navbar__toggle"
+            onClick={() => setIsOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}>
+            {isOpen ? <HiX /> : <HiMenu />}
+          </button>
+        </div>
 
         <ul className={`navbar__links ${isOpen ? "navbar__links--open" : ""}`}>
           {navSections.map((link) => (
-            <li key={link.id}>
+            <li key={link.id} className="navbar__link-item">
               <a
                 href={isHome ? `#${link.id}` : `/#${link.id}`}
                 className={`navbar__link ${
@@ -118,7 +138,7 @@ export default function Navbar() {
             |
           </li>
 
-          <li>
+          <li className="navbar__cv-item">
             <a
               href={lang === "es" ? "/cv/cv-es.pdf" : "/cv/cv-en.pdf"}
               download

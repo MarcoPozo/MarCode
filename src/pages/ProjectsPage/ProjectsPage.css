@@ -39,4 +39,22 @@ section.projects-page {
   .projects-page__grid {
     grid-template-columns: 1fr;
   }
+
+  /* Mismas medidas que .projects__grid .project-card en la sección Projects
+     del landing — selectores compuestos para no afectar esa sección ni
+     ningún otro uso de ProjectCard. */
+  .projects-page__grid .project-card {
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+
+  .projects-page__grid .project-card__visual {
+    height: 130px;
+  }
+
+  .projects-page__grid .project-card__description {
+    height: calc(var(--leading-normal) * 2em);
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+  }
 }

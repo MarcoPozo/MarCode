@@ -36,8 +36,64 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  /* Slider horizontal en vez de la típica pila vertical — las cards se ven
+     de a una (con la siguiente asomando a la derecha) y el usuario desliza
+     para ver el resto. Los selectores compuestos (.projects__grid .project-card...)
+     son a propósito: solo afectan esta sección del Home, no la ruta /projects
+     (ProjectsPage usa .projects-page__grid, una clase distinta). */
   .projects__grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-md);
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    /* Sin esto, scroll-snap "corrige" el scroll apenas carga la página para
+       que la primera card quede pegada al borde del contenedor, ignorando
+       el padding-left — scroll-padding le avisa al snap dónde está el
+       límite real, en vez de pelear contra el padding. */
+    scroll-padding-inline: var(--section-padding-x);
+    scrollbar-width: none;
+    /* Máscara que desvanece el borde derecho, mismo recurso que usamos
+       para difuminar el ShaderNoise entre Hero y About — acá simula que
+       las cards ocultas van "apareciendo" al arrastrar, en vez de un
+       corte seco contra el borde de la pantalla. */
+    mask-image: linear-gradient(
+      to right,
+      rgb(var(--black-rgb)) 0%,
+      rgb(var(--black-rgb)) 88%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgb(var(--black-rgb)) 0%,
+      rgb(var(--black-rgb)) 88%,
+      transparent 100%
+    );
+  }
+
+  .projects__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projects__grid .project-card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+
+  /* Reduce la altura de la card — el visual de 250px era lo que más pesaba,
+     y padding/gap ya venían del tamaño pensado para la card grande. */
+  .projects__grid .project-card__visual {
+    height: 130px;
+  }
+
+  .projects__grid .project-card__description {
+    height: calc(var(--leading-normal) * 2em);
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
   }
 }

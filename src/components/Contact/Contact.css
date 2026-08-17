@@ -168,7 +168,12 @@ a.contact__info-link:hover {
 
 @media (max-width: 480px) {
   .contact__form {
-    padding: var(--space-lg);
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+
+  .contact__field textarea {
+    min-height: 90px;
   }
 
   .contact__submit {

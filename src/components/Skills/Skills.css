@@ -62,6 +62,14 @@
 }
 
 @media (max-width: 768px) {
+  /* About no tiene padding propio (se arma solo con el centrado flex de
+     .section-view), así que el padding-top de acá se suma al espacio ya
+     vacío que deja ese centrado — recortarlo achica el salto entre ambas
+     secciones sin tocar About. */
+  .skills {
+    padding-top: var(--space-lg);
+  }
+
   .skills__tabs {
     display: flex;
     flex-wrap: wrap;

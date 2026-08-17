@@ -421,7 +421,11 @@ img {
   transform: translateY(-1px);
 }
 
-/* Responsivo */
+/* Responsivo — desktop-first, escala oficial de breakpoints (ver CLAUDE.md):
+   480px celulares, 768px tablets verticales, 1024px tablets horizontales /
+   laptops chicos. 320px es el piso mínimo soportado, pero cae dentro de
+   max-width: 480px, no es un breakpoint aparte. Los min-width 1600px/1920px
+   de más abajo (monitores grandes) son una escala aparte. */
 @media (max-width: 768px) {
   :root {
     --section-padding-y: var(--space-3xl);

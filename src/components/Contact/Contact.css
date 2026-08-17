@@ -1,3 +1,7 @@
+.contact {
+  padding-bottom: var(--section-padding-y);
+}
+
 .contact__grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;

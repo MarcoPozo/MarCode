@@ -199,6 +199,7 @@
 
 html {
   scroll-padding-top: var(--navbar-height);
+  overflow-x: hidden;
 }
 
 body {
@@ -211,6 +212,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 main {

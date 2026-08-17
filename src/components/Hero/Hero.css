@@ -19,7 +19,7 @@
 
 .hero__name {
   position: relative;
-  font-size: clamp(5rem, 15vw, 12rem);
+  font-size: clamp(2.75rem, 15vw, 12rem);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-snug);
   cursor: default;

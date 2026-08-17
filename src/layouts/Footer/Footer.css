@@ -130,7 +130,11 @@
 }
 
 @media (max-width: 768px) {
-  .footer__grid {
+  /* Selectores calzados con .footer al frente para igualar la especificidad
+     de .footer .footer__grid / .footer .footer__bottom de arriba — si no,
+     esta regla nunca gana la cascada y el grid se queda en 3 columnas sin
+     importar el ancho de pantalla. */
+  .footer .footer__grid {
     grid-template-columns: 1fr;
     text-align: center;
   }
@@ -151,7 +155,7 @@
     justify-content: center;
   }
 
-  .footer__bottom {
+  .footer .footer__bottom {
     flex-direction: column;
     text-align: center;
   }

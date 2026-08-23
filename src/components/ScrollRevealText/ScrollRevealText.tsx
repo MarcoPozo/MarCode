@@ -28,10 +28,13 @@ export default function ScrollRevealText({ text, className = "" }: ScrollRevealT
       rafId = 0;
       const rect = el.getBoundingClientRect();
       // El progreso llega a 0 mientras el borde superior del bloque sigue
-      // bajo en el viewport (85%) y a 1 una vez que sube más allá del 35% —
-      // el rango típico de "revelar al cruzar la mitad de la pantalla".
+      // bajo en el viewport (85%) y a 1 recién cuando sube hasta el borde
+      // superior (0%) — antes terminaba en 35%, pero como el progreso se
+      // calcula solo con el borde superior (no por línea), un párrafo alto
+      // quedaba pintado del todo mientras su mitad de abajo seguía visible
+      // sin "leerse" aún. Un rango más largo lo desacelera.
       const start = window.innerHeight * 0.85;
-      const end = window.innerHeight * 0.35;
+      const end = 0;
       const raw = (start - rect.top) / (start - end);
       const progress = Math.min(1, Math.max(0, raw));
       const litCount = Math.floor(progress * total);

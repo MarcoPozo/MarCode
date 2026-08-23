@@ -5,13 +5,13 @@
 }
 
 .reveal-char.is-lit {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-char {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     opacity: 1;
   }
 }

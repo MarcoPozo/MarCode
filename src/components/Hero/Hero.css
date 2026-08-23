@@ -83,12 +83,17 @@ a.hero__socials-cv {
 }
 
 @media (max-width: 768px) {
-  a.hero__socials-cv {
-    display: inline-flex;
-  }
-
   .hero__description {
     text-wrap: balance;
+  }
+}
+
+/* Mismo umbral que Navbar.css a propósito — el link de CV del navbar recién
+   reaparece en 1024px, así que este ícono debe seguir visible hasta ahí o
+   queda inaccesible en el medio. */
+@media (max-width: 1024px) {
+  a.hero__socials-cv {
+    display: inline-flex;
   }
 }
 

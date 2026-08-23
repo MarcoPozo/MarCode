@@ -35,6 +35,10 @@ section.projects-page {
   }
 }
 
+/* max-width: 600px, fuera de la escala oficial de breakpoints (ver
+   CLAUDE.md) — con 2 columnas cada card queda demasiado angosta para su
+   contenido (imagen + descripción + tags) antes de llegar a 480px, así que
+   el pase a 1 columna se adelanta a este punto. */
 @media (max-width: 600px) {
   .projects-page__grid {
     grid-template-columns: 1fr;

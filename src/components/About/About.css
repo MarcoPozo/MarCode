@@ -98,10 +98,10 @@
 
   .about__stat-icon,
   .about__stat-value {
-    font-size: var(--text-xl);
+    font-size: var(--text-3xl);
   }
 
   .about__stat-label {
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
   }
 }

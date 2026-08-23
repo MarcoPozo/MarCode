@@ -198,7 +198,7 @@
   color: var(--accent-text);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   /* En mobile la barra y el menú a pantalla completa deben leerse como un
      mismo bloque de color — con --bg-glass (translúcido) el Hero de atrás
      se veía a través de ambos. Fondo sólido en vez de glass, así que el

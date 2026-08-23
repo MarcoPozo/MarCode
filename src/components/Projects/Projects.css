@@ -31,12 +31,6 @@
 }
 
 @media (max-width: 900px) {
-  .projects__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
   /* Slider horizontal en vez de la típica pila vertical — las cards se ven
      de a una (con la siguiente asomando a la derecha) y el usuario desliza
      para ver el resto. Los selectores compuestos (.projects__grid .project-card...)
@@ -79,7 +73,11 @@
   }
 
   .projects__grid .project-card {
-    flex: 0 0 85%;
+    /* min(70%, 340px): en pantallas chicas sigue siendo 70% del ancho
+       (se achica con el viewport), pero cerca de los 900px el 70% solo ya
+       da ~630px — demasiado ancha para un slider — así que el tope fijo
+       de 340px gana ahí y deja ver bien la siguiente card asomando. */
+    flex: 0 0 min(70%, 340px);
     scroll-snap-align: start;
     padding: var(--space-md);
     gap: var(--space-md);

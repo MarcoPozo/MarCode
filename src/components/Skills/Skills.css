@@ -61,7 +61,7 @@
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   /* About no tiene padding propio (se arma solo con el centrado flex de
      .section-view), así que el padding-top de acá se suma al espacio ya
      vacío que deja ese centrado — recortarlo achica el salto entre ambas
@@ -115,12 +115,28 @@
 
   .skills__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* auto-fill en vez de un número fijo de columnas — la cantidad de chips
+       por fila se adapta sola al ancho disponible, en vez de forzar
+       siempre un número fijo. El mínimo bajó de 250px a 110px para que
+       siga entrando más de una columna hasta el piso de 320px — ojo que
+       .skills__category-block ya suma su propio padding-inline (16px a
+       cada lado) al del container, así que el ancho real disponible a
+       320px es 256px, no 288px. */
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-auto-rows: 180px;
     gap: var(--space-lg);
   }
 
   .skills__chip {
     flex-direction: column;
+    justify-content: center;
     text-align: center;
+  }
+
+  .skills__chip-name {
+    /* Con columnas más angostas un nombre largo como "Tailwind CSS" no
+       entra en una sola línea — acá sí puede envolver a dos, cosa que el
+       nowrap de la regla base no permite. */
+    white-space: normal;
   }
 }

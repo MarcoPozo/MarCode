@@ -1,4 +1,4 @@
-import { FiCalendar, FiCheckCircle, FiUsers } from "react-icons/fi";
+import { FiCalendar, FiCheckCircle, FiLayers } from "react-icons/fi";
 import { useReveal } from "../../hooks/useReveal";
 import { useLanguage } from "../../context/language-context";
 import ScrollRevealText from "../ScrollRevealText/ScrollRevealText";
@@ -8,7 +8,7 @@ import "./About.css";
 const stats = [
   { value: "3+", key: "experience", icon: FiCalendar },
   { value: "10+", key: "delivered", icon: FiCheckCircle },
-  { value: "2", key: "teamwork", icon: FiUsers },
+  { value: "20+", key: "technologies", icon: FiLayers },
 ] as const;
 
 export default function About() {
@@ -40,7 +40,10 @@ export default function About() {
           {stats.map((stat) => (
             <div key={stat.key} className="about__stat">
               <div className="about__stat-top">
-                <stat.icon className="about__stat-icon" />
+                <span className="about__stat-icon-wrap">
+                  <stat.icon className="about__stat-icon" />
+                  <stat.icon className="about__stat-icon about__stat-icon--shimmer" aria-hidden="true" />
+                </span>
                 <span className="about__stat-value">{stat.value}</span>
               </div>
               <span className="about__stat-label">{t.about.stats[stat.key]}</span>

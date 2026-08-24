@@ -28,7 +28,7 @@ export interface Translations {
     stats: {
       experience: string;
       delivered: string;
-      teamwork: string;
+      technologies: string;
     };
   };
   skills: {
@@ -124,7 +124,7 @@ export const translations: Record<Language, Translations> = {
       stats: {
         experience: "Años de experiencia",
         delivered: "Proyectos entregados",
-        teamwork: "Trabajo en equipo / freelance",
+        technologies: "Tecnologías dominadas",
       },
     },
     skills: {
@@ -221,7 +221,7 @@ export const translations: Record<Language, Translations> = {
       stats: {
         experience: "Years of experience",
         delivered: "Projects delivered",
-        teamwork: "Team / freelance work",
+        technologies: "Technologies mastered",
       },
     },
     skills: {

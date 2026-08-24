@@ -29,7 +29,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   gap: var(--space-xl);
 }
 
@@ -43,12 +43,70 @@
 .about__stat-top {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+}
+
+.about__stat-icon-wrap {
+  position: relative;
+  display: inline-flex;
 }
 
 .about__stat-icon {
   font-size: clamp(3rem, 5vw, 4.5rem);
-  color: var(--text-secondary);
+  color: var(--accent-text);
+}
+
+/* Segunda copia del mismo ícono, encimada — background-clip:text (lo que
+   usa .text-gradient-shimmer) no funciona sobre un SVG, así que el barrido
+   se logra con mask-image en vez de eso: una franja se desliza sobre esta
+   copia, dejando ver un color más claro solo donde pasa. */
+.about__stat-icon--shimmer {
+  position: absolute;
+  inset: 0;
+  color: rgba(var(--white-rgb), 0.9);
+  -webkit-mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 40%,
+    black 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 40%,
+    black 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  -webkit-mask-size: 300% 100%;
+  mask-size: 300% 100%;
+  animation: about-icon-shimmer var(--duration-shimmer) ease-in-out infinite;
+}
+
+/* Probado a mano: con mask-size:300%, la franja queda oculta en 0% y recién
+   se ve centrada en -100% — igual que .text-gradient-shimmer, se pausa
+   oculta la primera mitad del ciclo y recién en la segunda mitad barre de
+   0% a -200%, pasando por el punto visible en el camino. */
+@keyframes about-icon-shimmer {
+  0%,
+  50% {
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+  100% {
+    -webkit-mask-position: -200% 0;
+    mask-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__stat-icon--shimmer {
+    animation: none;
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
 }
 
 .about__stat-value {

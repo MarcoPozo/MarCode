@@ -54,6 +54,10 @@ const skillGroups = [
   },
 ] as const;
 
+// Se actualiza a mano cuando cambio de foco de aprendizaje — no forma parte
+// de skillGroups porque no es una habilidad ya dominada, es un badge aparte.
+const learning = { name: "Docker", slug: "docker" };
+
 function CategoryBlock({
   group,
   index,
@@ -122,6 +126,18 @@ export default function Skills() {
             </>
           }
         />
+
+        <div className="skills__learning">
+          <span className="skills__learning-dot" aria-hidden="true" />
+          <span className="skills__learning-label">{t.skills.learningLabel}:</span>
+          <img
+            src={`https://skillicons.dev/icons?i=${learning.slug}`}
+            alt=""
+            className="skills__learning-icon"
+            loading="lazy"
+          />
+          <span className="skills__learning-name">{learning.name}</span>
+        </div>
 
         <div className="skills__tabs" role="tablist">
           {skillGroups.map((group) => (

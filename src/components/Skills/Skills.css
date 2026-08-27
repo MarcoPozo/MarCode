@@ -57,6 +57,62 @@
   white-space: nowrap;
 }
 
+.skills__learning {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  border: var(--border-thin) solid var(--border-default);
+  background: var(--bg-secondary);
+}
+
+.skills__learning-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: skills-learning-pulse var(--duration-pulse) ease-out infinite;
+}
+
+@keyframes skills-learning-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(var(--accent-rgb), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills__learning-dot {
+    animation: none;
+  }
+}
+
+.skills__learning-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+
+.skills__learning-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.skills__learning-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
 .skills__tabs {
   display: none;
 }

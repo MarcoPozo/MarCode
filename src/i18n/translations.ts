@@ -41,6 +41,7 @@ export interface Translations {
       databases: string;
       tools: string;
     };
+    learningLabel: string;
   };
   projects: {
     eyebrow: string;
@@ -137,6 +138,7 @@ export const translations: Record<Language, Translations> = {
         databases: "Bases de datos",
         tools: "Herramientas y diseño",
       },
+      learningLabel: "Aprendiendo ahora",
     },
     projects: {
       eyebrow: "Proyectos",
@@ -234,6 +236,7 @@ export const translations: Record<Language, Translations> = {
         databases: "Databases",
         tools: "Tools & design",
       },
+      learningLabel: "Currently learning",
     },
     projects: {
       eyebrow: "Projects",

@@ -87,6 +87,7 @@
   --duration-grid-shimmer: 10s;
   --duration-card-transform: 0.4s;
   --duration-card-opacity: 0.6s;
+  --duration-pulse: 2s;
 
   --z-base: 0;
   --z-raised: 1;
